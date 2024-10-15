@@ -7,11 +7,16 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        mouseMemoris: ['Mouse-Memoirs', 'cursive'],
+        mouseMemoris: ['MouseMemoris', 'sans-serif'],
       },
       backgroundImage: {
-        'mobile-background': "url('./src/assets/images/background-mobile.svg')"
+        'mobile-background': "url('./src/assets/images/background-mobile.svg')",
+        'pink-gradient': `linear-gradient(#fe71fe, #2462ff);`
+      },
+
+      backgroundColor: {
       }
+      
     },
   },
   plugins: [],
