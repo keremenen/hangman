@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  .font-outline-2 {
+    -webkit-text-stroke: 2px black;
+  }
+  .font-outline-4 {
+    -webkit-text-stroke: 4px black;
+  }
+}
+
 @font-face {
   font-family: 'MouseMemoris';
   src: url('./assets/fonts/MouseMemoirs-Regular.ttf') format('truetype');
@@ -34,4 +43,8 @@
 }
 .heading-s{
   @apply text-[32px] uppercase tracking-[1.5px]
+}
+
+.stroke{
+  -webkit-text-stroke: 20px #243041;
 }
