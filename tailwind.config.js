@@ -8,6 +8,9 @@ export default {
     extend: {
       fontFamily: {
         mouseMemoris: ['Mouse-Memoirs', 'cursive'],
+      },
+      backgroundImage: {
+        'mobile-background': "url('./src/assets/images/background-mobile.svg')"
       }
     },
   },

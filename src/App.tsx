@@ -1,8 +1,13 @@
+import HangmanLogo from "./components/icons/logo";
+
 function App() {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </>
+    <section className="mx-auto flex max-w-sm justify-center">
+      {/* MAIN MENU */}
+      <section>
+        <HangmanLogo />
+      </section>
+    </section>
   );
 }
 
