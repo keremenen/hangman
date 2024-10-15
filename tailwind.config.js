@@ -21,7 +21,9 @@ export default {
       },
       boxShadow: {
         // Add inner shadow with position X: 0, Y: 0, blur: 0, spread: 6, color: #CFD8DC
-        'custom': 'inset 0 4px 0 3px #3c74ff, 0 2px 0 3px #140e66'
+        'custom': 'inset 0 4px 0 3px #3c74ff, 0 2px 0 3px #140e66',
+        'button':'inset 0px 3px 0 3px #3c74ff, 0 2px 0 3px #140e66;',
+        'button-2': 'inset 0 1px 0 5px #140E66'
       },
       //
     },
