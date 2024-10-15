@@ -1,4 +1,4 @@
-import { cn } from "../assets/lib/utils";
+import { cn } from "../lib/utils";
 
 type ButtonProps = {
   children: string;

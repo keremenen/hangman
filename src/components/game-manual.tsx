@@ -1,4 +1,4 @@
-import { addLeadingZero } from "../assets/lib/utils";
+import { addLeadingZero } from "../lib/utils";
 
 const hangmanGameInstructions = [
   {

@@ -1,4 +1,4 @@
-import { cn } from "../assets/lib/utils";
+import { cn } from "../lib/utils";
 
 const hiddenPhrase = "United Kingdom";
 const hiddenPhraseWordArray = hiddenPhrase.split(" ");

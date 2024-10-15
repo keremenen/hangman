@@ -1,4 +1,4 @@
-import { alphabet } from "../assets/lib/const";
+import { alphabet } from "../lib/const";
 
 export default function Keyboard() {
   return (
