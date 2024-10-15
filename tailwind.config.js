@@ -9,6 +9,10 @@ export default {
       fontFamily: {
         mouseMemoris: ['MouseMemoris', 'sans-serif'],
       },
+      colors: {
+        'dark-navy': '#261676',
+        'blue': '#2463ff'
+      },
       backgroundImage: {
         'mobile-background': "url('./src/assets/images/background-mobile.svg')",
         'pink-gradient': `linear-gradient(#fe71fe, #2462ff);`

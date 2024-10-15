@@ -1,5 +1,5 @@
 import logo from "../assets/images/logo.svg";
 
 export default function Logo() {
-  return <img src={logo} alt="The Hangman Game logo" className="w-full" />;
+  return <img src={logo} alt="The Hangman Game logo" />;
 }
