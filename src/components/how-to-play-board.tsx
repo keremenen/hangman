@@ -1,7 +1,7 @@
 import HeaderWrapper from "./header-wrapper";
 import IconButton from "./icon-button";
 import Heading from "./heading";
-import GameManual from "./game-manual";
+import GameManual from "./game-manual-board";
 import backIcon from "../assets/images/icon-back.svg";
 
 export default function HowToPlayBoard() {

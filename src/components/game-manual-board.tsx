@@ -28,16 +28,16 @@ type SingleGameManualProps = {
   index: number;
 };
 
-export default function GameManual() {
+export default function GameManualBoard() {
   return (
-    <section className="mx-auto grid w-full max-w-sm gap-24 py-4">
+    <section className="mx-auto flex w-full max-w-sm flex-col gap-y-24 py-4">
       <HeaderWrapper>
         <Link to="/">
           <IconButton icon={backIcon} />
         </Link>
         <Heading>How to Play</Heading>
       </HeaderWrapper>
-      <div className="flex flex-col gap-8">
+      <section className="flex flex-col gap-8">
         {hangmanGameInstructions.map((instruction, index) => (
           <SingleGameManual
             instruction={instruction}
@@ -45,7 +45,7 @@ export default function GameManual() {
             index={index}
           />
         ))}
-      </div>
+      </section>
     </section>
   );
 }
