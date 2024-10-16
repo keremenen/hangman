@@ -18,7 +18,7 @@ export default function CategoryPickBoard() {
         <Heading>Pick a Category</Heading>
       </HeaderWrapper>
 
-      <section className="grid gap-4">
+      <section className="flex flex-col gap-4">
         {categories?.map((category, index) => (
           <Link to={`/app?category=${slugify(category)}`} key={index}>
             <Button
