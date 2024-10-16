@@ -1,6 +1,5 @@
 import HiddenLetters from "./hidden-letters";
 import Keyboard from "./keyboard";
-import PauseModal from "./pause-modal";
 import AppBar from "./app-bar";
 
 export default function InGameBoard() {

@@ -35,7 +35,7 @@ export default function GameManual() {
         <Link to="/">
           <IconButton icon={backIcon} />
         </Link>
-        <Heading>Pick a Category</Heading>
+        <Heading>How to Play</Heading>
       </HeaderWrapper>
       <div className="flex flex-col gap-8">
         {hangmanGameInstructions.map((instruction, index) => (

@@ -35,7 +35,7 @@ export default function CategoryPickBoard() {
               size="full"
               className="rounded-2xl py-5 text-2xl"
               value={category}
-              onClick={() => selectNewCategory(category)}
+              onClick={() => selectNewCategory(slugify(category))}
             >
               {category}
             </Button>
