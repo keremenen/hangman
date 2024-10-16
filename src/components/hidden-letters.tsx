@@ -14,8 +14,8 @@ export default function HiddenLetters() {
               <span
                 key={letterIndex}
                 className={cn(
-                  "bg-blue/100 shadow-custom flex h-16 w-9 items-center justify-center overflow-hidden rounded-xl text-4xl",
-                  shouldHide && "bg-blue/40 text-transparent shadow-none",
+                  "shadow-primary flex h-16 w-9 items-center justify-center overflow-hidden rounded-xl bg-blue/100 text-4xl",
+                  shouldHide && "text-transparent opacity-20 shadow-none",
                 )}
               >
                 {letter.toUpperCase()}
