@@ -6,6 +6,7 @@ type GameStore = {
   isPaused: boolean;
 
   selectNewCategory: (category: string) => void;
+  togglePause: () => void;
 };
 
 export const useGameStore = create<GameStore>((set) => ({
