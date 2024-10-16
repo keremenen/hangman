@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { alphabet } from "../lib/const";
 import { cn } from "../lib/utils";
 
@@ -8,6 +9,23 @@ export default function Keyboard() {
     (state) => state.handleKeyboardButtonClick,
   );
   const clickedLetters = useGameStore((state) => state.clickedLetters);
+
+  useEffect(() => {
+    console.log(clickedLetters);
+    const handleRealKeyboardButtonClick = (event: KeyboardEvent) => {
+      const isLetter = /^[a-zA-Z]$/.test(event.key);
+      if (isLetter) {
+        if (clickedLetters.includes(event.key.toLowerCase())) return;
+        handleKeyboardButtonClick(event.key.toLowerCase());
+      }
+    };
+
+    window.addEventListener("keypress", handleRealKeyboardButtonClick);
+
+    return () => {
+      window.removeEventListener("keypress", handleRealKeyboardButtonClick);
+    };
+  }, [clickedLetters, handleKeyboardButtonClick]);
 
   return (
     <section className="flex flex-wrap justify-center gap-x-2 gap-y-4">
@@ -23,6 +41,8 @@ export default function Keyboard() {
           value={letter}
           disabled={clickedLetters.includes(letter.toLowerCase())}
           onClick={() => handleKeyboardButtonClick(letter.toLowerCase())}
+          // add event listerenr to keyboard
+          // onKeyPress={() => console.log("key pressed")}
         >
           {letter}
         </button>

@@ -4,15 +4,10 @@ import backIcon from "../assets/images/icon-back.svg";
 import Button from "./button";
 import Heading from "./heading";
 import { Link } from "react-router-dom";
-import {
-  CategoryKeys,
-  getAllCategories,
-  handleCategoryChoice,
-  slugify,
-} from "../lib/utils";
+import { getAllCategories, handleCategoryChoice, slugify } from "../lib/utils";
 
 export default function CategoryPickBoard() {
-  const categories: CategoryKeys = getAllCategories();
+  const categories = getAllCategories();
 
   return (
     <section className="mx-auto grid w-full max-w-sm gap-24 py-4">
