@@ -1,17 +1,27 @@
 import MainMenuBoard from "./components/main-menu-board";
 import CategoryPickBoard from "./components/category-pick-board";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  redirect,
+} from "react-router-dom";
 import GameManualBoard from "./components/game-manual-board";
 import InGameBoard from "./components/in-game-board";
 import { useEffect } from "react";
-import { getCategoryNameFromUrl } from "./lib/utils";
+import { getCategoryNameFromUrl, handleCategoryChoice } from "./lib/utils";
 
 function App() {
   useEffect(() => {
     // If there is a category in the URL, select it and start the game with it
     // [WIP] This is a work in progress
     const category = getCategoryNameFromUrl();
-    console.log(category);
+
+    if (category) {
+      console.log(category);
+      // handleCategoryChoice(category);
+      redirect(`/app?category=${category}`);
+    }
   }, []);
 
   return (

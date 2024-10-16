@@ -9,6 +9,8 @@ import { getAllCategories, handleCategoryChoice, slugify } from "../lib/utils";
 export default function CategoryPickBoard() {
   const categories = getAllCategories();
 
+  console.log(categories);
+
   return (
     <section className="mx-auto grid w-full max-w-sm gap-24 py-4">
       <HeaderWrapper>

@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 import { useGameStore } from "../stores/gameStore";
 import database from "../data/words.json";
 
-export type CategoryKeys = keyof typeof database.categories;
+import { Categories } from "./types";
 
 export function addLeadingZero(number: number) {
   return number < 10 ? `0${number}` : number;
@@ -26,12 +26,12 @@ export function unslugify(text: string | null) {
     .join(" ");
 }
 
-export const getAllCategories = (): CategoryKeys[] => {
+export const getAllCategories = (): Categories[] => {
   if (!database.categories) return [];
-  return Object.keys(database.categories) as CategoryKeys[];
+  return Object.keys(database.categories) as Categories[];
 };
 
-const getRandomWordFromCategory = (category: CategoryKeys): string => {
+const getRandomWordFromCategory = (category: Categories): string => {
   const words = database.categories[category];
   if (!words || words.length === 0) {
     throw new Error(`Category ${category} not found or empty`);
