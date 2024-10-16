@@ -26,3 +26,5 @@ export const alphabet = [
   "Y",
   "Z",
 ];
+
+export const HP_REDUCTION = 20;
