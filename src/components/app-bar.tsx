@@ -18,7 +18,7 @@ export default function AppBar() {
         {selectedCategory && <h1 className="text-4xl">{selectedCategory}</h1>}
       </div>
 
-      {health && <HealthBar currentHealth={health} />}
+      <HealthBar currentHealth={health} />
       {isPaused && <PauseModal />}
     </HeaderWrapper>
   );

@@ -26,7 +26,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   isGameStarted: true,
   selectedCategory: null,
   isPaused: false,
-  health: 100,
+  health: 0,
   word: "",
   visibleLetters: [],
   clickedLetters: [],
