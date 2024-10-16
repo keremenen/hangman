@@ -1,4 +1,3 @@
-// import { cn } from "../lib/utils";
 import { cn } from "../lib/utils";
 import { useGameStore } from "../stores/gameStore";
 
@@ -6,7 +5,7 @@ export default function HiddenLetters() {
   const word = useGameStore((state) => state.word);
   const visibleLetters = useGameStore((state) => state.visibleLetters);
 
-  // Derive the wordArray from the word
+  // Derive the wordArray from the word variable
   const wordArray = word?.split(" ");
   // Create a global index to keep track of the letters (trick to avoid spaces in phrases)
   let globalIndex = 0;

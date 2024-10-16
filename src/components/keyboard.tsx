@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { alphabet } from "../lib/const";
 import { cn } from "../lib/utils";
-
 import { useGameStore } from "../stores/gameStore";
 
 export default function Keyboard() {
@@ -30,23 +29,39 @@ export default function Keyboard() {
   return (
     <section className="flex flex-wrap justify-center gap-x-2 gap-y-4">
       {alphabet.map((letter, index) => (
-        <button
+        <KeyboardTile
           key={index}
-          className={cn(
-            "flex items-center justify-center rounded-xl bg-white px-3 py-3 text-2xl text-dark-navy",
-            {
-              "opacity-20": clickedLetters.includes(letter.toLowerCase()),
-            },
-          )}
-          value={letter}
-          disabled={clickedLetters.includes(letter.toLowerCase())}
+          letter={letter}
           onClick={() => handleKeyboardButtonClick(letter.toLowerCase())}
-          // add event listerenr to keyboard
-          // onKeyPress={() => console.log("key pressed")}
-        >
-          {letter}
-        </button>
+          isDisabled={clickedLetters.includes(letter.toLowerCase())}
+        />
       ))}
     </section>
+  );
+}
+// isabled={clickedLetters.includes(letter.toLowerCase())}
+// onClick={() => handleKeyboardButtonClick(letter.toLowerCase())}
+
+type KeyboardTileProps = {
+  onClick: () => void;
+  letter: string;
+  disabled?: boolean;
+  isDisabled: boolean;
+};
+
+function KeyboardTile({ onClick, letter, isDisabled }: KeyboardTileProps) {
+  return (
+    <button
+      className={cn(
+        "flex items-center justify-center rounded-xl bg-white px-3 py-3 text-2xl text-dark-navy",
+        {
+          "opacity-20": isDisabled,
+        },
+      )}
+      onClick={onClick}
+      value={letter}
+    >
+      {letter}
+    </button>
   );
 }
