@@ -1,24 +1,33 @@
+// import { cn } from "../lib/utils";
 import { cn } from "../lib/utils";
-
-const hiddenPhrase = "United Kingdom";
-const hiddenPhraseWordArray = hiddenPhrase.split(" ");
+import { useGameStore } from "../stores/gameStore";
 
 export default function HiddenLetters() {
+  const getSelectedWordArray = useGameStore(
+    (state) => state.getSelectedWordArray,
+  );
+  const wordArray = getSelectedWordArray();
+  const visibleLetters = useGameStore((state) => state.visibleLetters);
+  let globalIndex = 0;
+  // console.log(getSelectedWordArray());
+  console.log(visibleLetters);
+
   return (
-    <section className="flex flex-wrap justify-center gap-y-4">
-      {hiddenPhraseWordArray.map((word, wordIndex) => (
-        <section key={wordIndex} className="flex gap-x-3">
+    <section className="flex flex-wrap justify-center gap-x-8 gap-y-4">
+      {wordArray?.map((word, wordIndex) => (
+        <section className="flex gap-x-3" key={wordIndex}>
           {word.split("").map((letter, letterIndex) => {
-            const shouldHide = Math.random() < 0.5; // 50% chance to hide the letter
+            const isVisible = visibleLetters[globalIndex];
+            globalIndex++;
             return (
               <span
                 key={letterIndex}
                 className={cn(
-                  "shadow-primary flex h-16 w-9 items-center justify-center overflow-hidden rounded-xl bg-blue/100 text-4xl",
-                  shouldHide && "text-transparent opacity-20 shadow-none",
+                  "flex h-16 w-9 select-none items-center justify-center overflow-hidden rounded-xl bg-blue/100 text-4xl text-transparent opacity-20 shadow-none",
+                  { "text-white opacity-100": isVisible },
                 )}
               >
-                {letter.toUpperCase()}
+                {letter}
               </span>
             );
           })}
