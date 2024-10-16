@@ -3,9 +3,6 @@ import { alphabet } from "../lib/const";
 export default function Keyboard() {
   const hiddenPhrase = "United Kingdom";
 
-  // setWord(hiddenPhrase);
-  // console.log(visibleLetters);
-
   const handleKeyboardButtonClick = (letter: string) => {
     if (hiddenPhrase.toLowerCase().includes(letter)) {
       console.log(

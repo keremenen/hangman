@@ -1,26 +1,28 @@
 import MainMenuBoard from "./components/main-menu-board";
-// import { useGameStore } from "./stores/gameStore";
 import CategoryPickBoard from "./components/category-pick-board";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GameManual from "./components/game-manual";
 import InGameBoard from "./components/in-game-board";
 import { useEffect } from "react";
 import { useGameStore } from "./stores/gameStore";
-// import HowToPlayBoard from "./components/how-to-play-board";
-// import MainMenuBoard from "./components/main-menu-board";
 
 function App() {
-  // const isGameStarted = useGameStore((state) => state.isGameStarted);
-  // const selectedCategory = useGameStore((state) => state.selectedCategory);
-  const selectNewCategory = useGameStore((state) => state.selectNewCategory);
+  const handleSelectCategory = useGameStore(
+    (state) => state.handleSelectCategory,
+  );
+  const loadCategories = useGameStore((state) => state.loadCategories);
 
   useEffect(() => {
+    // If there is a category in the URL, select it
+    loadCategories();
     const params = new URLSearchParams(location.search);
     const category = params.get("category");
     if (category) {
-      selectNewCategory(category);
+      handleSelectCategory(category);
     }
-  }, [selectNewCategory]);
+
+    // Load categories from JSON
+  }, [handleSelectCategory, loadCategories]);
 
   return (
     <section className="px-4">
@@ -32,9 +34,6 @@ function App() {
           <Route path="/app" element={<InGameBoard />} />
         </Routes>
       </Router>
-
-      {/* <CategoryPickBoard /> */}
-      {/* <HowToPlayBoard /> */}
     </section>
   );
 }

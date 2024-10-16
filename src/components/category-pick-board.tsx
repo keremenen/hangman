@@ -7,17 +7,11 @@ import { useGameStore } from "../stores/gameStore";
 import { Link } from "react-router-dom";
 import { slugify } from "../lib/utils";
 
-const hangmanCategories = [
-  "Movies",
-  "TV shows",
-  "Countries",
-  "Capital cities",
-  "Animals",
-  "Sports",
-];
-
 export default function CategoryPickBoard() {
-  const selectNewCategory = useGameStore((state) => state.selectNewCategory);
+  const handleSelectCategory = useGameStore(
+    (state) => state.handleSelectCategory,
+  );
+  const categories = useGameStore((state) => state.categories);
 
   return (
     <section className="mx-auto grid w-full max-w-sm gap-24 py-4">
@@ -28,14 +22,14 @@ export default function CategoryPickBoard() {
         <Heading>Pick a Category</Heading>
       </HeaderWrapper>
       <section className="grid gap-4">
-        {hangmanCategories.map((category) => (
-          <Link to={`/app?category=${slugify(category)}`}>
+        {categories?.map((category, index) => (
+          <Link to={`/app?category=${slugify(category)}`} key={index}>
             <Button
               key={category}
               size="full"
               className="rounded-2xl py-5 text-2xl"
               value={category}
-              onClick={() => selectNewCategory(slugify(category))}
+              onClick={() => handleSelectCategory(category)}
             >
               {category}
             </Button>

@@ -3,14 +3,14 @@ import { cn } from "../lib/utils";
 import { useGameStore } from "../stores/gameStore";
 
 export default function HiddenLetters() {
-  const getSelectedWordArray = useGameStore(
-    (state) => state.getSelectedWordArray,
-  );
-  const wordArray = getSelectedWordArray();
+  const word = useGameStore((state) => state.word);
+  console.log(`World in hiddenLetters: ${word}`);
+
   const visibleLetters = useGameStore((state) => state.visibleLetters);
+
+  //Derived state
+  const wordArray = word?.split(" ");
   let globalIndex = 0;
-  // console.log(getSelectedWordArray());
-  console.log(visibleLetters);
 
   return (
     <section className="flex flex-wrap justify-center gap-x-8 gap-y-4">
@@ -23,7 +23,7 @@ export default function HiddenLetters() {
               <span
                 key={letterIndex}
                 className={cn(
-                  "flex h-16 w-9 select-none items-center justify-center overflow-hidden rounded-xl bg-blue/100 text-4xl text-transparent opacity-20 shadow-none",
+                  "flex h-16 w-9 select-none items-center justify-center overflow-hidden rounded-xl bg-blue/100 text-4xl text-transparent text-white opacity-20 shadow-none",
                   { "text-white opacity-100": isVisible },
                 )}
               >
