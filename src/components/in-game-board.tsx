@@ -9,7 +9,7 @@ import Keyboard from "./keyboard";
 
 export default function InGameBoard() {
   return (
-    <section className="grid w-full max-w-[324px] gap-20 py-4">
+    <section className="mx-auto grid w-full max-w-sm gap-24 py-4">
       <HeaderWrapper>
         <div className="flex items-center gap-4">
           <IconButton icon={menuIcon} />

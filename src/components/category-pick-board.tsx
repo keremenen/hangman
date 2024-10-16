@@ -15,7 +15,7 @@ const hangmanCategories = [
 
 export default function CategoryPickBoard() {
   return (
-    <section className="grid w-full max-w-[324px] gap-24 py-4">
+    <section className="mx-auto grid w-full max-w-sm gap-24 py-4">
       <HeaderWrapper>
         <IconButton icon={backIcon} />
         <Heading>Pick a Category</Heading>
