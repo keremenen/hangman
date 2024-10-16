@@ -8,6 +8,7 @@ export default function HiddenLetters() {
 
   const visibleLetters = useGameStore((state) => state.visibleLetters);
 
+  console.log(`Visible letters in hiddenLetters: ${visibleLetters}`);
   //Derived state
   const wordArray = word?.split(" ");
   let globalIndex = 0;

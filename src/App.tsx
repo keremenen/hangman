@@ -4,25 +4,16 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GameManual from "./components/game-manual";
 import InGameBoard from "./components/in-game-board";
 import { useEffect } from "react";
-import { useGameStore } from "./stores/gameStore";
+import { handleCategoryChoice, unslugify } from "./lib/utils";
 
 function App() {
-  const handleSelectCategory = useGameStore(
-    (state) => state.handleSelectCategory,
-  );
-  const loadCategories = useGameStore((state) => state.loadCategories);
-
   useEffect(() => {
     // If there is a category in the URL, select it
-    loadCategories();
     const params = new URLSearchParams(location.search);
     const category = params.get("category");
-    if (category) {
-      handleSelectCategory(category);
-    }
 
-    // Load categories from JSON
-  }, [handleSelectCategory, loadCategories]);
+    if (category) handleCategoryChoice(unslugify(category));
+  }, []);
 
   return (
     <section className="px-4">
