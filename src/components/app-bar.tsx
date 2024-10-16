@@ -10,6 +10,7 @@ export default function AppBar() {
   const togglePause = useGameStore((state) => state.togglePause);
   const selectedCategory = useGameStore((state) => state.selectedCategory);
   const isPaused = useGameStore((state) => state.isPaused);
+  const health = useGameStore((state) => state.health);
 
   return (
     <HeaderWrapper>
@@ -19,7 +20,7 @@ export default function AppBar() {
           {selectedCategory && unslugify(selectedCategory)}
         </h1>
       </div>
-      <HealthBar />
+      <HealthBar currentHealth={health} />
 
       {isPaused && <PauseModal />}
     </HeaderWrapper>
