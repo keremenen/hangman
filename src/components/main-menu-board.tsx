@@ -6,9 +6,11 @@ import PlayButton from "./play-button";
 export default function MainMenuBoard() {
   return (
     <section className="flex min-h-screen items-center justify-center">
-      <div className="bg-blue-gradient shadow-tertiary relative grid h-[480px] w-full max-w-[324px] rounded-[48px]">
-        <div className="absolute -mt-16 flex flex-col items-center gap-14 px-8">
+      <div className="relative flex h-[440px] w-full max-w-sm flex-col items-center justify-center rounded-[48px] bg-blue-gradient shadow-tertiary">
+        <div className="absolute top-0 mx-auto -mt-12 max-w-60">
           <Logo />
+        </div>
+        <div className="mt-8 flex flex-col items-center gap-y-12">
           <Link to="/category">
             <PlayButton />
           </Link>

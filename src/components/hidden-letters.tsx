@@ -23,7 +23,7 @@ export default function HiddenLetters() {
               <span
                 key={letterIndex}
                 className={cn(
-                  "flex h-16 w-9 select-none items-center justify-center overflow-hidden rounded-xl bg-blue/100 text-4xl text-transparent text-white opacity-20 shadow-none",
+                  "flex h-16 w-9 select-none items-center justify-center overflow-hidden rounded-xl bg-blue/100 text-4xl text-transparent opacity-10 shadow-none",
                   { "text-white opacity-100": isVisible },
                 )}
               >

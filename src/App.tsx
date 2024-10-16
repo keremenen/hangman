@@ -4,19 +4,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GameManual from "./components/game-manual";
 import InGameBoard from "./components/in-game-board";
 import { useEffect } from "react";
-import { CategoryKeys, handleCategoryChoice, unslugify } from "./lib/utils";
-import { useGameStore } from "./stores/gameStore";
+import { getCategoryNameFromUrl } from "./lib/utils";
 
 function App() {
-  const health = useGameStore((state) => state.health);
-  console.log(health);
-
   useEffect(() => {
-    // If there is a category in the URL, select it
-    const params = new URLSearchParams(location.search);
-    const category = params.get("category");
-
-    if (category) handleCategoryChoice(unslugify(category) as CategoryKeys);
+    // If there is a category in the URL, select it and start the game with it
+    // [WIP] This is a work in progress
+    const category = getCategoryNameFromUrl();
+    console.log(category);
   }, []);
 
   return (

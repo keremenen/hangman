@@ -56,3 +56,10 @@ export const cutWord = (word: string | null) => {
   if (!word) return [];
   return word.split(" ").join("").split("");
 };
+
+export const getCategoryNameFromUrl = () => {
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category")?.toLowerCase();
+
+  return category;
+};
