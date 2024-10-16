@@ -4,13 +4,12 @@ import { useGameStore } from "../stores/gameStore";
 
 export default function HiddenLetters() {
   const word = useGameStore((state) => state.word);
-  console.log(`World in hiddenLetters: ${word}`);
-
   const visibleLetters = useGameStore((state) => state.visibleLetters);
 
-  console.log(`Visible letters in hiddenLetters: ${visibleLetters}`);
-  //Derived state
+  // Derive the wordArray from the word
   const wordArray = word?.split(" ");
+
+  // Create a global index to keep track of the letters
   let globalIndex = 0;
 
   return (

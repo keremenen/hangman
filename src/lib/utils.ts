@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 import { useGameStore } from "../stores/gameStore";
 import database from "../data/words.json";
 
-type CategoryKeys = keyof typeof database.categories;
+export type CategoryKeys = keyof typeof database.categories;
 
 export function addLeadingZero(number: number) {
   return number < 10 ? `0${number}` : number;
@@ -18,21 +18,17 @@ export function slugify(text: string) {
   return text.toLowerCase().replace(/\s/g, "-");
 }
 
-export function unslugify(text: string) {
+export function unslugify(text: string | null) {
+  if (!text) return;
   return text
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 }
 
-type Database = {
-  categories: {
-    [key: string]: { name: string }[];
-  };
-};
-
-export const getAllCategories = (database: Database): string[] => {
-  return Object.keys(database.categories);
+export const getAllCategories = (): CategoryKeys[] => {
+  if (!database.categories) return [];
+  return Object.keys(database.categories) as CategoryKeys[];
 };
 
 const getRandomWordFromCategory = (category: CategoryKeys): string => {
@@ -54,4 +50,9 @@ export const handleCategoryChoice = (category: CategoryKeys) => {
   setNewCategory(category);
   setNewWord(newWord);
   setVisibleLetters(newWord);
+};
+
+export const cutWord = (word: string | null) => {
+  if (!word) return [];
+  return word.split(" ").join("").split("");
 };

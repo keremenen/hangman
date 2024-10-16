@@ -1,21 +1,31 @@
 import { alphabet } from "../lib/const";
+import { cutWord } from "../lib/utils";
+import { useGameStore } from "../stores/gameStore";
 
 export default function Keyboard() {
-  const hiddenPhrase = "United Kingdom";
+  const word = cutWord(useGameStore((state) => state.word));
+  const visibleLetters = useGameStore((state) => state.visibleLetters);
+  const checkIfAllLettersAreVisible = useGameStore(
+    (state) => state.checkIfAllLettersAreVisible,
+  );
+
+  const updateVisibleLetters = useGameStore(
+    (state) => state.updateVisibleLetters,
+  );
 
   const handleKeyboardButtonClick = (letter: string) => {
-    if (hiddenPhrase.toLowerCase().includes(letter)) {
-      console.log(
-        `Correct: letter ${letter} at indexes ${hiddenPhrase
-          .toLowerCase()
-          .split("")
-          .map((l, i) => (l === letter ? i : null))
-          .filter((i) => i !== null)}`,
-      );
-      return;
-    } else {
-      console.log("Incorrect");
-      return;
+    const newVisibleLetters = [...visibleLetters];
+    for (let i = 0; i < word.length; i++) {
+      if (word[i].toLowerCase() === letter) {
+        newVisibleLetters[i] = true;
+      } else {
+        console.log("missed");
+      }
+    }
+    updateVisibleLetters(newVisibleLetters);
+    checkIfAllLettersAreVisible();
+    if (checkIfAllLettersAreVisible()) {
+      console.log("Game won!");
     }
   };
 

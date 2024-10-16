@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GameManual from "./components/game-manual";
 import InGameBoard from "./components/in-game-board";
 import { useEffect } from "react";
-import { handleCategoryChoice, unslugify } from "./lib/utils";
+import { CategoryKeys, handleCategoryChoice, unslugify } from "./lib/utils";
 
 function App() {
   useEffect(() => {
@@ -12,7 +12,7 @@ function App() {
     const params = new URLSearchParams(location.search);
     const category = params.get("category");
 
-    if (category) handleCategoryChoice(unslugify(category));
+    if (category) handleCategoryChoice(unslugify(category) as CategoryKeys);
   }, []);
 
   return (

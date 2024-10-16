@@ -12,9 +12,11 @@ type GameStore = {
   setNewCategory: (category: string) => void;
   togglePause: () => void;
   setVisibleLetters: (word: string) => void;
+  updateVisibleLetters: (newVisibleLetters: boolean[]) => void;
+  checkIfAllLettersAreVisible: () => boolean;
 };
 
-export const useGameStore = create<GameStore>((set) => ({
+export const useGameStore = create<GameStore>((set, get) => ({
   isGameStarted: false,
   selectedCategory: null,
   isPaused: false,
@@ -41,5 +43,14 @@ export const useGameStore = create<GameStore>((set) => ({
       .split("")
       .map(() => false);
     set({ visibleLetters });
+  },
+
+  updateVisibleLetters: (newVisibleLetters: boolean[]) => {
+    set({ visibleLetters: newVisibleLetters });
+  },
+
+  checkIfAllLettersAreVisible: () => {
+    const visibleLetters = get().visibleLetters;
+    return visibleLetters.every((letter) => letter);
   },
 }));
