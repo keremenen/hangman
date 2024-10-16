@@ -13,10 +13,10 @@ function App() {
           {/* <div className="absolute">
             <Heading className="text-8xl">Paused</Heading>
           </div> */}
-          <div className="flex flex-col items-center gap-8">
+          <div className="flex flex-col items-center gap-[34px]">
             <Button>Continue</Button>
+            <Button variant="secondary">Quit Game</Button>
             <Button>New Category</Button>
-            <Button>Quit Game</Button>
           </div>
         </div>
       </section>

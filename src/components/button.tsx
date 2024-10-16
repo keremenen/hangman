@@ -1,17 +1,46 @@
+import { cva } from "class-variance-authority";
 import { cn } from "../lib/utils";
+import { ButtonHTMLAttributes } from "react";
 
-type ButtonProps = {
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: string;
   className?: string;
+  variant?: "default" | "secondary" | "square";
+  size?: "default" | "full";
 };
 
-export default function Button({ children, className }: ButtonProps) {
+const buttonVariants = cva(
+  "px-16 py-2 text-3xl uppercase tracking-[2.3px] rounded-full min-h-[62px] whitespace-nowrap disabled:opacity-50 disabled:pointer-events-none transition-color ease-in-out duration-200",
+  {
+    variants: {
+      variant: {
+        default: "bg-blue shadow-primary hover:brightness-125",
+        secondary: "bg-pink-gradient shadow-secondary hover:brightness-125",
+        square: "rounded-2xl py-5 text-2xl",
+      },
+      size: {
+        default: "w-auto",
+        full: "w-full",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  },
+);
+
+export default function Button({
+  variant,
+  size,
+  className,
+  children,
+  ...props
+}: ButtonProps) {
   return (
     <button
-      className={cn(
-        `shadow-button bg-blue rounded-full px-12 py-3 text-3xl uppercase tracking-[1.5px]`,
-        className,
-      )}
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
     >
       {children}
     </button>

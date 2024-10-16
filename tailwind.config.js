@@ -20,10 +20,8 @@ export default {
         'pink-gradient': `linear-gradient(#fe71fe, #2462ff)`,
       },
       boxShadow: {
-        // Add inner shadow with position X: 0, Y: 0, blur: 0, spread: 6, color: #CFD8DC
-        'custom': 'inset 0 4px 0 3px #3c74ff, 0 2px 0 3px #140e66',
-        'button':'inset 0px 3px 0 3px #3c74ff, 0 2px 0 3px #140e66;',
-        'button-2': 'inset 0 1px 0 5px #140E66'
+        'primary':'inset 0 -2px 0 3px #140e66, inset 0px 1px 0 6px #3c74ff ',
+        'secondary': ' inset 0 -2px 0 3px #140E66,  inset 0 1px 0 6px #C642FB ',
       },
       //
     },

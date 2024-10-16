@@ -22,7 +22,11 @@ export default function CategoryPickBoard() {
       </HeaderWrapper>
       <section className="grid gap-4">
         {hangmanCategories.map((category) => (
-          <Button key={category} className="rounded-2xl py-5 text-2xl">
+          <Button
+            key={category}
+            size="full"
+            className="rounded-2xl py-5 text-2xl"
+          >
             {category}
           </Button>
         ))}
