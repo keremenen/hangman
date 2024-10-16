@@ -1,4 +1,9 @@
+import { Link } from "react-router-dom";
 import { addLeadingZero } from "../lib/utils";
+import HeaderWrapper from "./header-wrapper";
+import IconButton from "./icon-button";
+import Heading from "./heading";
+import backIcon from "../assets/images/icon-back.svg";
 
 const hangmanGameInstructions = [
   {
@@ -25,10 +30,22 @@ type SingleGameManualProps = {
 
 export default function GameManual() {
   return (
-    <section className="flex flex-col items-center justify-center gap-6">
-      {hangmanGameInstructions.map((instruction, index) => (
-        <SingleGameManual instruction={instruction} key={index} index={index} />
-      ))}
+    <section className="mx-auto grid w-full max-w-sm gap-24 py-4">
+      <HeaderWrapper>
+        <Link to="/">
+          <IconButton icon={backIcon} />
+        </Link>
+        <Heading>Pick a Category</Heading>
+      </HeaderWrapper>
+      <div className="flex flex-col gap-8">
+        {hangmanGameInstructions.map((instruction, index) => (
+          <SingleGameManual
+            instruction={instruction}
+            key={index}
+            index={index}
+          />
+        ))}
+      </div>
     </section>
   );
 }
@@ -36,11 +53,11 @@ export default function GameManual() {
 function SingleGameManual({ instruction, index }: SingleGameManualProps) {
   return (
     <article className="grid-row-2 grid grid-cols-[20px_1fr] gap-4 rounded-3xl bg-white p-8">
-      <p className="text-blue text-2xl">{addLeadingZero(index + 1)}</p>
-      <h3 className="text-dark-navy text-2xl uppercase tracking-wide">
+      <p className="text-2xl text-blue">{addLeadingZero(index + 1)}</p>
+      <h3 className="text-2xl uppercase tracking-wide text-dark-navy">
         {instruction.title}
       </h3>
-      <p className="text-violet col-span-2 tracking-wide">
+      <p className="col-span-2 tracking-wide text-violet">
         {instruction.description}
       </p>
     </article>

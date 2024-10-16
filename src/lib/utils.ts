@@ -9,3 +9,7 @@ export function addLeadingZero(number: number) {
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export function slugify(text: string) {
+  return text.toLowerCase().replace(/\s/g, "-");
+}
