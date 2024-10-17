@@ -12,6 +12,7 @@ export const alphabet = [
   "K",
   "L",
   "M",
+  "N",
   "O",
   "P",
   "Q",

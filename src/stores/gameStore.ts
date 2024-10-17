@@ -1,7 +1,8 @@
+import { clsx } from "clsx";
 import { create } from "zustand";
 import { persist, PersistOptions } from "zustand/middleware";
 import { HP_REDUCTION } from "../lib/const";
-import { Categories, CategoryItem, CategoryTree } from "../lib/types";
+import { Categories, CategoryTree } from "../lib/types";
 
 type GameStore = {
   isGameStarted: boolean;
@@ -20,21 +21,22 @@ type GameStore = {
   setVisibleLetters: (word: string) => void;
   updateVisibleLetters: (newVisibleLetters: boolean[]) => void;
   checkIfAllLettersAreVisible: () => boolean;
-  handleKeyboardButtonClick: (letter: string) => void;
   updateClickedLetters: (letter: string) => void;
   checkIfHealthIsZero: () => boolean;
   checkIfGameIsOver: () => boolean;
   getAllCategories: () => string[];
   getRandomEntryFromCategory: () => string;
-  // setvisibleLetters: (word: string) => void;
   startGameWithSelectedCategory: (category: Categories) => void;
-  handleClickOnVirualKeyboard: (letter: string) => void;
+  handleKeyboardClick: (letter: string) => void;
+  getArrayOfLoweredLetters: (word: string) => string[];
+  resetClickedLetters: () => void;
+  setFullHealth: () => void;
 };
 
 export const useGameStore = create(
   persist(
     (set, get) => ({
-      isGameStarted: true,
+      isGameStarted: false,
       selectedCategory: null,
       isPaused: false,
       health: 100,
@@ -96,11 +98,15 @@ export const useGameStore = create(
           getRandomEntryFromCategory,
           setNewWord,
           setVisibleLetters,
+          resetClickedLetters,
+          setFullHealth,
         } = get();
         setCategory(category);
         const newWord = getRandomEntryFromCategory();
         setNewWord(newWord);
         setVisibleLetters(newWord);
+        resetClickedLetters();
+        setFullHealth();
       },
 
       getRandomEntryFromCategory: (): string => {
@@ -135,63 +141,50 @@ export const useGameStore = create(
         set((state) => ({ clickedLetters: [...state.clickedLetters, letter] }));
       },
 
-      handleClickOnVirualKeyboard: (letter: string) => {
-        const {
-          visibleLetters,
-          updateVisibleLetters,
-          checkIfGameIsOver,
-          updateClickedLetters,
-          isGameStarted,
-        } = get();
-
-        if (!isGameStarted) return;
-
-        const splittedWord = get().word!.split(" ").join("").split("");
-        const loweredWord = splittedWord.map((word) => word.toLowerCase());
-
-        if (!loweredWord.includes(letter)) {
-          set((state) => ({ health: state.health - HP_REDUCTION }));
-        }
-
-        const newVisibleLetters = [...visibleLetters];
-        for (let i = 0; i < splittedWord.length; i++) {
-          if (splittedWord[i].toLowerCase() === letter) {
-            newVisibleLetters[i] = true;
-          }
-        }
-        updateVisibleLetters(newVisibleLetters);
-        updateClickedLetters(letter);
-        if (checkIfGameIsOver()) {
-          set({ isGameStarted: false });
-          console.log("Game is over");
-        }
+      resetClickedLetters: () => {
+        set({ clickedLetters: [] });
       },
 
-      handleKeyboardButtonClick: (letter: string) => {
+      setFullHealth: () => {
+        set({ health: 100 });
+      },
+
+      getArrayOfLoweredLetters: (word: string) => {
+        return word
+          .split(" ")
+          .join("")
+          .split("")
+          .map((word) => word.toLowerCase());
+      },
+
+      handleKeyboardClick: (letter: string) => {
         const {
           visibleLetters,
           updateVisibleLetters,
           checkIfGameIsOver,
           updateClickedLetters,
-          isGameStarted,
+          getArrayOfLoweredLetters,
+          word,
         } = get();
 
-        if (!isGameStarted) return;
-        const splittedWord = get().word!.split(" ").join("").split("");
+        const loweredWord = getArrayOfLoweredLetters(word!);
 
-        const loweredWord = splittedWord.map((word) => word.toLowerCase());
+        // If array from lowered icons doesn't include the letter, reduce health
         if (!loweredWord.includes(letter)) {
           set((state) => ({ health: state.health - HP_REDUCTION }));
         }
 
+        // Hide pressed letter in the keyboard component
         const newVisibleLetters = [...visibleLetters];
-        for (let i = 0; i < splittedWord.length; i++) {
-          if (splittedWord[i].toLowerCase() === letter) {
+        for (let i = 0; i < loweredWord.length; i++) {
+          if (loweredWord[i].toLowerCase() === letter) {
             newVisibleLetters[i] = true;
           }
         }
         updateVisibleLetters(newVisibleLetters);
         updateClickedLetters(letter);
+
+        // Check if the game is over
         if (checkIfGameIsOver()) {
           set({ isGameStarted: false });
           console.log("Game is over");
