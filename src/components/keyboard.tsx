@@ -23,7 +23,7 @@ export default function Keyboard() {
   }, [handleKeyboardClick]);
 
   return (
-    <section className="mb-20 mt-auto flex flex-wrap justify-center gap-x-2 gap-y-4">
+    <section className="mb-40 mt-auto flex flex-wrap justify-center gap-x-2 gap-y-4">
       {alphabet.map((letter, index) => (
         <KeyboardTile
           key={index}
