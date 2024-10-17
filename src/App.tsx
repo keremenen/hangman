@@ -11,7 +11,6 @@ import { Categories } from "./lib/types";
 function App() {
   const setData = useGameStore((state) => state.setData);
   const data = useGameStore((state) => state.data);
-
   const startGameWithSelectedCategory = useGameStore(
     (state) => state.startGameWithSelectedCategory,
   );
@@ -19,10 +18,9 @@ function App() {
   // Set data on app mount
   useEffect(() => {
     setData();
-    // const category = unslugify(getCategoryNameFromUrl());
-    // startGameWithSelectedCategory(category as Categories);
   }, [setData]);
 
+  // Start game with selected category from URL
   useEffect(() => {
     if (data) {
       const category = unslugify(getCategoryNameFromUrl());

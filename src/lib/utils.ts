@@ -12,10 +12,12 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function slugify(text: string) {
+  if (!text) return "";
   return text.toLowerCase().replace(/\s/g, "-");
 }
 
 export const unslugify = (text: string) => {
+  if (!text) return "";
   return text.replace(/-/g, " ");
 };
 // export const getAllCategories = (): Categories[] => {
