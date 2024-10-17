@@ -106,9 +106,11 @@ export const useGameStore = create(
           setFullHealth,
           toggleStartGame,
         } = get();
+        console.log("function entry");
         toggleStartGame();
         setCategory(category);
         const newWord = getRandomEntryFromCategory(category);
+        console.log("new word:", newWord);
         setNewWord(newWord);
         setVisibleLetters(newWord);
         resetClickedLetters();
@@ -117,6 +119,7 @@ export const useGameStore = create(
 
       getRandomEntryFromCategory: (category: Categories): string => {
         const { data } = get();
+        console.log(`data: `, data);
         if (!data) return "";
         const words = data![category];
         if (!words || words.length === 0) return "";

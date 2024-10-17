@@ -9,9 +9,6 @@ export default function Keyboard() {
     (state) => state.handleKeyboardClick,
   );
   const clickedLetters = useGameStore((state) => state.clickedLetters);
-  const word = useGameStore((state) => state.word);
-  console.log(`word: ${word}`);
-  console.log(`clicked letters: ${clickedLetters}`);
 
   useEffect(() => {
     const handleRealKeyboardButtonClick = (event: KeyboardEvent) => {
