@@ -16,7 +16,7 @@ export default function PauseModal() {
           </ModalHeader>
           <ModalOptions>
             <Button onClick={togglePause}>Continue</Button>
-            <Link to="/category">
+            <Link to="/categories">
               <Button onClick={togglePause}>New Category</Button>
             </Link>
             <Link to="/">

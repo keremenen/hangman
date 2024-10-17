@@ -11,7 +11,7 @@ export default function MainMenuBoard() {
           <Logo />
         </div>
         <div className="mt-8 flex flex-col items-center gap-y-12">
-          <Link to="/category">
+          <Link to="/categories">
             <PlayButton />
           </Link>
           <Link to={"/instructions"}>
