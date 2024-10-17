@@ -173,13 +173,16 @@ export const useGameStore = create(
           checkIfGameIsOver,
           updateClickedLetters,
           getArrayOfLoweredLetters,
+          clickedLetters,
           word,
         } = get();
 
         const loweredWord = getArrayOfLoweredLetters(word!);
 
+        if (clickedLetters.includes(letter.toLowerCase())) return;
+
         // If array from lowered icons doesn't include the letter, reduce health
-        if (!loweredWord.includes(letter)) {
+        if (!loweredWord.includes(letter.toLocaleLowerCase())) {
           set((state) => ({ health: state.health - HP_REDUCTION }));
         }
 

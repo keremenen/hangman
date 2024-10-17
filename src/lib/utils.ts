@@ -57,3 +57,7 @@ export const getCategoryNameFromUrl = (): Categories => {
 
   return category as Categories;
 };
+
+export const checkIfKeyIsLetter = (event: KeyboardEvent) => {
+  return /^[a-zA-Z]$/.test(event.key);
+};
