@@ -4,9 +4,15 @@ import backIcon from "../assets/images/icon-back.svg";
 import Button from "./button";
 import Heading from "./heading";
 import { Link } from "react-router-dom";
-import { getAllCategories, handleCategoryChoice, slugify } from "../lib/utils";
+import { useGameStore } from "../stores/gameStore";
+import { slugify } from "../lib/utils";
+import { Categories } from "../lib/types";
 
 export default function CategoryPickBoard() {
+  const getAllCategories = useGameStore((state) => state.getAllCategories);
+  const startGameWithSelectedCategory = useGameStore(
+    (state) => state.startGameWithSelectedCategory,
+  );
   const categories = getAllCategories();
 
   console.log(categories);
@@ -28,7 +34,9 @@ export default function CategoryPickBoard() {
               size="full"
               className="rounded-2xl py-5 text-2xl"
               value={category}
-              onClick={() => handleCategoryChoice(category)}
+              onClick={() =>
+                startGameWithSelectedCategory(category as Categories)
+              }
             >
               {category}
             </Button>

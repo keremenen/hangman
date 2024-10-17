@@ -1,30 +1,31 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { alphabet } from "../lib/const";
 import { cn } from "../lib/utils";
 import { useGameStore } from "../stores/gameStore";
 
 export default function Keyboard() {
-  const handleKeyboardButtonClick = useGameStore(
-    (state) => state.handleKeyboardButtonClick,
+  const handleClickOnVirualKeyboard = useGameStore(
+    (state) => state.handleClickOnVirualKeyboard,
   );
   const clickedLetters = useGameStore((state) => state.clickedLetters);
+  console.log(`clicked letters: ${clickedLetters}`);
 
-  useEffect(() => {
-    console.log(clickedLetters);
-    const handleRealKeyboardButtonClick = (event: KeyboardEvent) => {
-      const isLetter = /^[a-zA-Z]$/.test(event.key);
-      if (isLetter) {
-        if (clickedLetters.includes(event.key.toLowerCase())) return;
-        handleKeyboardButtonClick(event.key.toLowerCase());
-      }
-    };
+  // useEffect(() => {
+  //   console.log(clickedLetters);
+  //   const handleRealKeyboardButtonClick = (event: KeyboardEvent) => {
+  //     const isLetter = /^[a-zA-Z]$/.test(event.key);
+  //     if (isLetter) {
+  //       if (clickedLetters.includes(event.key.toLowerCase())) return;
+  //       handleKeyboardButtonClick(event.key.toLowerCase());
+  //     }
+  //   };
 
-    window.addEventListener("keypress", handleRealKeyboardButtonClick);
+  //   window.addEventListener("keypress", handleRealKeyboardButtonClick);
 
-    return () => {
-      window.removeEventListener("keypress", handleRealKeyboardButtonClick);
-    };
-  }, [clickedLetters, handleKeyboardButtonClick]);
+  //   return () => {
+  //     window.removeEventListener("keypress", handleRealKeyboardButtonClick);
+  //   };
+  // }, [clickedLetters, handleKeyboardButtonClick]);
 
   return (
     <section className="flex flex-wrap justify-center gap-x-2 gap-y-4">
@@ -32,7 +33,7 @@ export default function Keyboard() {
         <KeyboardTile
           key={index}
           letter={letter}
-          onClick={() => handleKeyboardButtonClick(letter.toLowerCase())}
+          onClick={() => handleClickOnVirualKeyboard(letter.toLowerCase())}
           isDisabled={clickedLetters.includes(letter.toLowerCase())}
         />
       ))}

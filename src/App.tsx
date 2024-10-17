@@ -4,25 +4,22 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  redirect,
+  // redirect,
 } from "react-router-dom";
 import GameManualBoard from "./components/game-manual-board";
 import InGameBoard from "./components/in-game-board";
 import { useEffect } from "react";
-import { getCategoryNameFromUrl, handleCategoryChoice } from "./lib/utils";
+// import { getCategoryNameFromUrl, handleCategoryChoice } from "./lib/utils";
+import { useGameStore } from "./stores/gameStore";
 
 function App() {
-  useEffect(() => {
-    // If there is a category in the URL, select it and start the game with it
-    // [WIP] This is a work in progress
-    const category = getCategoryNameFromUrl();
+  const setData = useGameStore((state) => state.setData);
 
-    if (category) {
-      console.log(category);
-      // handleCategoryChoice(category);
-      redirect(`/app?category=${category}`);
-    }
-  }, []);
+  // const data = useGameStore((state) => state.data);
+  // Fetch data from .json file and set it to the store
+  useEffect(() => {
+    setData();
+  }, [setData]);
 
   return (
     <div className="px-4">

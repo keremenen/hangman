@@ -1,17 +1,21 @@
 import { create } from "zustand";
+import { persist, PersistOptions } from "zustand/middleware";
 import { HP_REDUCTION } from "../lib/const";
+import { Categories, CategoryItem, CategoryTree } from "../lib/types";
 
 type GameStore = {
   isGameStarted: boolean;
-  selectedCategory: string | null;
+  selectedCategory: Categories | null;
   isPaused: boolean;
   word: string | null;
   visibleLetters: boolean[];
   health: number; // should be between 0 and 100
   clickedLetters: string[];
+  data: CategoryTree | null;
 
+  setData: () => void;
   setNewWord: (word: string) => void;
-  setNewCategory: (category: string) => void;
+  setCategory: (category: Categories) => void;
   togglePause: () => void;
   setVisibleLetters: (word: string) => void;
   updateVisibleLetters: (newVisibleLetters: boolean[]) => void;
@@ -20,91 +24,185 @@ type GameStore = {
   updateClickedLetters: (letter: string) => void;
   checkIfHealthIsZero: () => boolean;
   checkIfGameIsOver: () => boolean;
+  getAllCategories: () => string[];
+  getRandomEntryFromCategory: () => string;
+  // setvisibleLetters: (word: string) => void;
+  startGameWithSelectedCategory: (category: Categories) => void;
+  handleClickOnVirualKeyboard: (letter: string) => void;
 };
 
-export const useGameStore = create<GameStore>((set, get) => ({
-  isGameStarted: true,
-  selectedCategory: null,
-  isPaused: false,
-  health: 0,
-  word: "",
-  visibleLetters: [],
-  clickedLetters: [],
+export const useGameStore = create(
+  persist(
+    (set, get) => ({
+      isGameStarted: true,
+      selectedCategory: null,
+      isPaused: false,
+      health: 100,
+      word: "",
+      visibleLetters: [],
+      clickedLetters: [],
+      data: null,
 
-  setNewCategory: (selectedCategory: string) => {
-    set({ selectedCategory });
-  },
+      setData: async () => {
+        try {
+          const response = await fetch("/data/words.json");
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          const data: CategoryTree = await response.json();
+          set({ data });
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      },
 
-  togglePause: () => {
-    set((state) => ({ isPaused: !state.isPaused }));
-  },
+      // CATEGORY SECTION
+      setCategory: (selectedCategory: Categories) => {
+        set({ selectedCategory });
+      },
 
-  setNewWord: (word: string) => {
-    set({ word });
-  },
+      getAllCategories: () => {
+        const data = get().data;
+        if (!data) return [];
+        return Object.keys(data) as string[];
+      },
 
-  setVisibleLetters: (word: string) => {
-    const visibleLetters = word
-      .split(" ")
-      .join("")
-      .split("")
-      .map(() => false);
-    set({ visibleLetters });
-  },
+      // GLOBAL GAME STATE SECTION
 
-  updateVisibleLetters: (newVisibleLetters: boolean[]) => {
-    set({ visibleLetters: newVisibleLetters });
-  },
+      togglePause: () => {
+        set((state) => ({ isPaused: !state.isPaused }));
+      },
 
-  checkIfAllLettersAreVisible: () => {
-    const visibleLetters = get().visibleLetters;
-    return visibleLetters.every((letter) => letter);
-  },
+      setNewWord: (word: string) => {
+        set({ word });
+      },
 
-  checkIfHealthIsZero: () => {
-    const health = get().health;
-    return health <= 0;
-  },
+      setVisibleLetters: (word: string) => {
+        const visibleLetters = word
+          .split(" ")
+          .join("")
+          .split("")
+          .map(() => false);
+        set({ visibleLetters });
+      },
 
-  checkIfGameIsOver: () => {
-    const { checkIfHealthIsZero, checkIfAllLettersAreVisible } = get();
-    const isHealthZero = checkIfHealthIsZero();
-    const allLettersAreVisible = checkIfAllLettersAreVisible();
-    return isHealthZero || allLettersAreVisible;
-  },
+      updateVisibleLetters: (newVisibleLetters: boolean[]) => {
+        set({ visibleLetters: newVisibleLetters });
+      },
 
-  updateClickedLetters: (letter: string) => {
-    set((state) => ({ clickedLetters: [...state.clickedLetters, letter] }));
-  },
+      startGameWithSelectedCategory: (category: Categories) => {
+        const {
+          setCategory,
+          getRandomEntryFromCategory,
+          setNewWord,
+          setVisibleLetters,
+        } = get();
+        setCategory(category);
+        const newWord = getRandomEntryFromCategory();
+        setNewWord(newWord);
+        setVisibleLetters(newWord);
+      },
 
-  handleKeyboardButtonClick: (letter: string) => {
-    const {
-      visibleLetters,
-      updateVisibleLetters,
-      checkIfGameIsOver,
-      updateClickedLetters,
-      isGameStarted,
-    } = get();
+      getRandomEntryFromCategory: (): string => {
+        const { selectedCategory, data } = get();
+        if (!selectedCategory || !data) return "";
 
-    if (!isGameStarted) return;
-    const splittedWord = get().word!.split(" ").join("").split("");
+        const words = data[selectedCategory];
+        if (!words || words.length === 0) return "";
 
-    const loweredWord = splittedWord.map((word) => word.toLowerCase());
-    if (!loweredWord.includes(letter)) {
-      set((state) => ({ health: state.health - HP_REDUCTION }));
-    }
+        const randomIndex = Math.floor(Math.random() * words.length);
+        return words[randomIndex].name.toString();
+      },
 
-    const newVisibleLetters = [...visibleLetters];
-    for (let i = 0; i < splittedWord.length; i++) {
-      if (splittedWord[i].toLowerCase() === letter) {
-        newVisibleLetters[i] = true;
-      }
-    }
-    updateVisibleLetters(newVisibleLetters);
-    updateClickedLetters(letter);
-    if (checkIfGameIsOver()) {
-      set({ isGameStarted: false });
-      console.log("Game is over");
-    }
-  },
-}));
+      checkIfAllLettersAreVisible: () => {
+        const visibleLetters = get().visibleLetters;
+        return visibleLetters.every((letter) => letter);
+      },
+
+      checkIfHealthIsZero: () => {
+        const health = get().health;
+        return health <= 0;
+      },
+
+      checkIfGameIsOver: () => {
+        const { checkIfHealthIsZero, checkIfAllLettersAreVisible } = get();
+        const isHealthZero = checkIfHealthIsZero();
+        const allLettersAreVisible = checkIfAllLettersAreVisible();
+        return isHealthZero || allLettersAreVisible;
+      },
+
+      updateClickedLetters: (letter: string) => {
+        set((state) => ({ clickedLetters: [...state.clickedLetters, letter] }));
+      },
+
+      handleClickOnVirualKeyboard: (letter: string) => {
+        const {
+          visibleLetters,
+          updateVisibleLetters,
+          checkIfGameIsOver,
+          updateClickedLetters,
+          isGameStarted,
+        } = get();
+
+        if (!isGameStarted) return;
+
+        const splittedWord = get().word!.split(" ").join("").split("");
+        const loweredWord = splittedWord.map((word) => word.toLowerCase());
+
+        if (!loweredWord.includes(letter)) {
+          set((state) => ({ health: state.health - HP_REDUCTION }));
+        }
+
+        const newVisibleLetters = [...visibleLetters];
+        for (let i = 0; i < splittedWord.length; i++) {
+          if (splittedWord[i].toLowerCase() === letter) {
+            newVisibleLetters[i] = true;
+          }
+        }
+        updateVisibleLetters(newVisibleLetters);
+        updateClickedLetters(letter);
+        if (checkIfGameIsOver()) {
+          set({ isGameStarted: false });
+          console.log("Game is over");
+        }
+      },
+
+      handleKeyboardButtonClick: (letter: string) => {
+        const {
+          visibleLetters,
+          updateVisibleLetters,
+          checkIfGameIsOver,
+          updateClickedLetters,
+          isGameStarted,
+        } = get();
+
+        if (!isGameStarted) return;
+        const splittedWord = get().word!.split(" ").join("").split("");
+
+        const loweredWord = splittedWord.map((word) => word.toLowerCase());
+        if (!loweredWord.includes(letter)) {
+          set((state) => ({ health: state.health - HP_REDUCTION }));
+        }
+
+        const newVisibleLetters = [...visibleLetters];
+        for (let i = 0; i < splittedWord.length; i++) {
+          if (splittedWord[i].toLowerCase() === letter) {
+            newVisibleLetters[i] = true;
+          }
+        }
+        updateVisibleLetters(newVisibleLetters);
+        updateClickedLetters(letter);
+        if (checkIfGameIsOver()) {
+          set({ isGameStarted: false });
+          console.log("Game is over");
+        }
+      },
+    }),
+    {
+      name: "game-store", // name of the item in the storage (must be unique)
+      getStorage: () => sessionStorage, // use sessionStorage for persistence
+    } as PersistOptions<GameStore>,
+  ),
+);
+
+export default useGameStore;

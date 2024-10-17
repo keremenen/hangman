@@ -15,7 +15,9 @@ export default function AppBar() {
     <HeaderWrapper>
       <div className="flex items-center gap-4">
         <IconButton icon={menuIcon} onClick={togglePause} className="z-20" />
-        {selectedCategory && <h1 className="text-4xl">{selectedCategory}</h1>}
+        {selectedCategory && (
+          <h1 className="text-4xl capitalize">{selectedCategory}</h1>
+        )}
       </div>
 
       <HealthBar currentHealth={health} />

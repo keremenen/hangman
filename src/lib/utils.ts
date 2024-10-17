@@ -1,10 +1,6 @@
 import clsx from "clsx";
 import { ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { useGameStore } from "../stores/gameStore";
-import database from "../data/words.json";
-
-import { Categories } from "./types";
 
 export function addLeadingZero(number: number) {
   return number < 10 ? `0${number}` : number;
@@ -26,31 +22,31 @@ export function unslugify(text: string | null) {
     .join(" ");
 }
 
-export const getAllCategories = (): Categories[] => {
-  if (!database.categories) return [];
-  return Object.keys(database.categories) as Categories[];
-};
+// export const getAllCategories = (): Categories[] => {
+//   if (!database.categories) return [];
+//   return Object.keys(database.categories) as Categories[];
+// };
 
-const getRandomWordFromCategory = (category: Categories): string => {
-  const words = database.categories[category];
-  if (!words || words.length === 0) {
-    throw new Error(`Category ${category} not found or empty`);
-  }
+// const getRandomWordFromCategory = (category: Categories): string => {
+//   const words = database.categories[category];
+//   if (!words || words.length === 0) {
+//     throw new Error(`Category ${category} not found or empty`);
+//   }
 
-  const randomIndex = Math.floor(Math.random() * words.length);
-  return words[randomIndex].name;
-};
+//   const randomIndex = Math.floor(Math.random() * words.length);
+//   return words[randomIndex].name;
+// };
 
-export const handleCategoryChoice = (category: CategoryKeys) => {
-  const setNewCategory = useGameStore.getState().setNewCategory;
-  const setNewWord = useGameStore.getState().setNewWord;
-  const setVisibleLetters = useGameStore.getState().setVisibleLetters;
+// export const handleCategoryChoice = (category: CategoryKeys) => {
+//   const setNewCategory = useGameStore.getState().setNewCategory;
+//   const setNewWord = useGameStore.getState().setNewWord;
+//   const setVisibleLetters = useGameStore.getState().setVisibleLetters;
 
-  const newWord = getRandomWordFromCategory(category);
-  setNewCategory(category);
-  setNewWord(newWord);
-  setVisibleLetters(newWord);
-};
+//   const newWord = getRandomWordFromCategory(category);
+//   setNewCategory(category);
+//   setNewWord(newWord);
+//   setVisibleLetters(newWord);
+// };
 
 export const cutWord = (word: string | null) => {
   if (!word) return [];
