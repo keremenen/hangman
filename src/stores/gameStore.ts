@@ -12,6 +12,8 @@ type GameStore = {
   health: number; // should be between 0 and 100
   clickedLetters: string[];
   data: CategoryTree | null;
+  isLose: boolean;
+  isWon: boolean;
 
   setData: () => void;
   setNewWord: (word: string) => void;
@@ -22,7 +24,7 @@ type GameStore = {
   checkIfAllLettersAreVisible: () => boolean;
   updateClickedLetters: (letter: string) => void;
   checkIfHealthIsZero: () => boolean;
-  checkIfGameIsOver: () => boolean;
+  checkIfGameIsOver: () => void;
   getAllCategories: () => string[];
   getRandomEntryFromCategory: (category: Categories) => string;
   startGameWithSelectedCategory: (category: Categories) => void;
@@ -30,7 +32,8 @@ type GameStore = {
   getArrayOfLoweredLetters: (word: string) => string[];
   resetClickedLetters: () => void;
   setFullHealth: () => void;
-  toggleStartGame: () => void;
+  hangleSetNewCategoryButton: () => void;
+  handleQuitGame: () => void;
 };
 
 export const useGameStore = create(
@@ -39,6 +42,8 @@ export const useGameStore = create(
       isGameStarted: false,
       selectedCategory: null,
       isPaused: false,
+      isLose: false,
+      isWon: false,
       health: 100,
       word: "",
       visibleLetters: [],
@@ -58,7 +63,6 @@ export const useGameStore = create(
         }
       },
 
-      // CATEGORY SECTION
       setCategory: (selectedCategory: Categories) => {
         set({ selectedCategory });
       },
@@ -69,14 +73,8 @@ export const useGameStore = create(
         return Object.keys(data) as string[];
       },
 
-      // GLOBAL GAME STATE SECTION
-
       togglePause: () => {
         set((state) => ({ isPaused: !state.isPaused }));
-      },
-
-      toggleStartGame: () => {
-        set((state) => ({ isGameStarted: !state.isGameStarted }));
       },
 
       setNewWord: (word: string) => {
@@ -104,13 +102,12 @@ export const useGameStore = create(
           setVisibleLetters,
           resetClickedLetters,
           setFullHealth,
-          toggleStartGame,
         } = get();
-        console.log("function entry");
-        toggleStartGame();
+
+        set({ isLose: false, isWon: false, isGameStarted: true });
         setCategory(category);
         const newWord = getRandomEntryFromCategory(category);
-        console.log("new word:", newWord);
+
         setNewWord(newWord);
         setVisibleLetters(newWord);
         resetClickedLetters();
@@ -119,7 +116,6 @@ export const useGameStore = create(
 
       getRandomEntryFromCategory: (category: Categories): string => {
         const { data } = get();
-        console.log(`data: `, data);
         if (!data) return "";
         const words = data![category];
         if (!words || words.length === 0) return "";
@@ -143,7 +139,14 @@ export const useGameStore = create(
         const { checkIfHealthIsZero, checkIfAllLettersAreVisible } = get();
         const isHealthZero = checkIfHealthIsZero();
         const allLettersAreVisible = checkIfAllLettersAreVisible();
-        return isHealthZero || allLettersAreVisible;
+
+        if (isHealthZero) {
+          set({ isLose: true, isGameStarted: false });
+        }
+
+        if (allLettersAreVisible) {
+          set({ isWon: true });
+        }
       },
 
       updateClickedLetters: (letter: string) => {
@@ -166,6 +169,25 @@ export const useGameStore = create(
           .map((word) => word.toLowerCase());
       },
 
+      // This is specific for modal component
+      hangleSetNewCategoryButton: () => {
+        set({
+          isGameStarted: false,
+          isWon: false,
+          isLose: false,
+          isPaused: false,
+        });
+      },
+
+      handleQuitGame: () => {
+        set({
+          isGameStarted: false,
+          isWon: false,
+          isLose: false,
+          isPaused: false,
+        });
+      },
+
       handleKeyboardClick: (letter: string) => {
         const {
           visibleLetters,
@@ -174,11 +196,14 @@ export const useGameStore = create(
           updateClickedLetters,
           getArrayOfLoweredLetters,
           clickedLetters,
+          isGameStarted,
           word,
         } = get();
 
+        if (!isGameStarted) return;
         const loweredWord = getArrayOfLoweredLetters(word!);
 
+        // If the letter was already clicked, return
         if (clickedLetters.includes(letter.toLowerCase())) return;
 
         // If array from lowered icons doesn't include the letter, reduce health
@@ -197,10 +222,7 @@ export const useGameStore = create(
         updateClickedLetters(letter);
 
         // Check if the game is over
-        if (checkIfGameIsOver()) {
-          set({ isGameStarted: false });
-          console.log("Game is over");
-        }
+        checkIfGameIsOver();
       },
     }),
     {

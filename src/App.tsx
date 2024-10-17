@@ -9,15 +9,19 @@ import CategoryPickBoard from "./components/category-pick-board";
 import GameManualBoard from "./components/game-manual-board";
 import MainMenuBoard from "./components/main-menu-board";
 import InGameBoard from "./components/in-game-board";
-import PauseModal from "./components/pause-modal";
+import GameModal from "./components/game-modal";
 
 function App() {
   const setData = useGameStore((state) => state.setData);
-  const isPaused = useGameStore((state) => state.isPaused);
   const data = useGameStore((state) => state.data);
+
   const startGameWithSelectedCategory = useGameStore(
     (state) => state.startGameWithSelectedCategory,
   );
+  const isPaused = useGameStore((state) => state.isPaused);
+  const isWon = useGameStore((state) => state.isWon);
+  const isLose = useGameStore((state) => state.isLose);
+
   // Set data on app mount
   useEffect(() => {
     setData();
@@ -44,7 +48,9 @@ function App() {
           <Route path="/categories" element={<CategoryPickBoard />} />
           <Route path="/app" element={<InGameBoard />} />
         </Routes>
-        {isPaused && <PauseModal />}
+        {isPaused && <GameModal type="Paused" />}
+        {isWon && <GameModal type="You Win" />}
+        {isLose && <GameModal type="You Lose" />}
       </Router>
     </div>
   );
