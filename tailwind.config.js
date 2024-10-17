@@ -16,7 +16,7 @@ export default {
       },
       backgroundImage: {
         'heading-blue-gradient': 'linear-gradient(180deg, #67B6FF, #FFFFFF)',
-        'mobile-background': "url('./src/assets/images/background-mobile.svg')",
+        'mobile-background': "url('/images/background-mobile.svg')",
         'pink-gradient': `linear-gradient(#fe71fe, #2462ff)`,
         'blue-gradient': `linear-gradient(#344abae6, #001479e6)`,
       },

@@ -1,10 +1,8 @@
-import menuIcon from "../assets/images/icon-menu.svg";
-import { useGameStore } from "../stores/gameStore";
-import IconButton from "./icon-button";
-
-// Components
 import HeaderWrapper from "./header-wrapper";
+import IconButton from "./icon-button";
 import HealthBar from "./health-bar";
+import { useGameStore } from "../stores/gameStore";
+import menuIcon from "../assets/images/icon-menu.svg";
 
 export default function AppBar() {
   const togglePause = useGameStore((state) => state.togglePause);
@@ -15,7 +13,9 @@ export default function AppBar() {
     <HeaderWrapper>
       <div className="flex items-center gap-4">
         <IconButton icon={menuIcon} onClick={togglePause} className="z-20" />
-        <h1 className="text-4xl capitalize">{selectedCategory}</h1>
+        {selectedCategory && (
+          <h1 className="text-4xl capitalize">{selectedCategory}</h1>
+        )}
       </div>
 
       <HealthBar currentHealth={health} />
