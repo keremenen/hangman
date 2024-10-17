@@ -1,4 +1,3 @@
-import { clsx } from "clsx";
 import { create } from "zustand";
 import { persist, PersistOptions } from "zustand/middleware";
 import { HP_REDUCTION } from "../lib/const";
@@ -25,12 +24,13 @@ type GameStore = {
   checkIfHealthIsZero: () => boolean;
   checkIfGameIsOver: () => boolean;
   getAllCategories: () => string[];
-  getRandomEntryFromCategory: () => string;
+  getRandomEntryFromCategory: (category: Categories) => string;
   startGameWithSelectedCategory: (category: Categories) => void;
   handleKeyboardClick: (letter: string) => void;
   getArrayOfLoweredLetters: (word: string) => string[];
   resetClickedLetters: () => void;
   setFullHealth: () => void;
+  toggleStartGame: () => void;
 };
 
 export const useGameStore = create(
@@ -75,6 +75,10 @@ export const useGameStore = create(
         set((state) => ({ isPaused: !state.isPaused }));
       },
 
+      toggleStartGame: () => {
+        set((state) => ({ isGameStarted: !state.isGameStarted }));
+      },
+
       setNewWord: (word: string) => {
         set({ word });
       },
@@ -100,23 +104,25 @@ export const useGameStore = create(
           setVisibleLetters,
           resetClickedLetters,
           setFullHealth,
+          toggleStartGame,
         } = get();
+        toggleStartGame();
         setCategory(category);
-        const newWord = getRandomEntryFromCategory();
+        const newWord = getRandomEntryFromCategory(category);
         setNewWord(newWord);
         setVisibleLetters(newWord);
         resetClickedLetters();
         setFullHealth();
       },
 
-      getRandomEntryFromCategory: (): string => {
-        const { selectedCategory, data } = get();
-        if (!selectedCategory || !data) return "";
-
-        const words = data[selectedCategory];
+      getRandomEntryFromCategory: (category: Categories): string => {
+        const { data } = get();
+        if (!data) return "";
+        const words = data![category];
         if (!words || words.length === 0) return "";
 
         const randomIndex = Math.floor(Math.random() * words.length);
+
         return words[randomIndex].name.toString();
       },
 

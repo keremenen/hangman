@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { Categories } from "./types";
 
 export function addLeadingZero(number: number) {
   return number < 10 ? `0${number}` : number;
@@ -14,14 +15,9 @@ export function slugify(text: string) {
   return text.toLowerCase().replace(/\s/g, "-");
 }
 
-export function unslugify(text: string | null) {
-  if (!text) return;
-  return text
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-}
-
+export const unslugify = (text: string) => {
+  return text.replace(/-/g, " ");
+};
 // export const getAllCategories = (): Categories[] => {
 //   if (!database.categories) return [];
 //   return Object.keys(database.categories) as Categories[];
@@ -53,9 +49,9 @@ export const cutWord = (word: string | null) => {
   return word.split(" ").join("").split("");
 };
 
-export const getCategoryNameFromUrl = () => {
+export const getCategoryNameFromUrl = (): Categories => {
   const params = new URLSearchParams(window.location.search);
   const category = params.get("category")?.toLowerCase();
 
-  return category;
+  return category as Categories;
 };
