@@ -14,12 +14,12 @@ export default function IconButton({
   return (
     <button
       className={cn(
-        "flex size-10 items-center justify-center rounded-full bg-pink-gradient",
+        "flex size-10 items-center justify-center rounded-full bg-pink-gradient sm:size-16",
         className,
       )}
       onClick={onClick}
     >
-      <img src={icon} alt="back" className="size-5" />
+      <img src={icon} alt="back" className="size-5 sm:size-8" />
     </button>
   );
 }

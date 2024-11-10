@@ -4,6 +4,8 @@ export default function HeaderWrapper({
   children: React.ReactNode;
 }) {
   return (
-    <header className="flex items-center justify-between">{children}</header>
+    <header className="relative flex items-center justify-between sm:justify-center">
+      {children}
+    </header>
   );
 }

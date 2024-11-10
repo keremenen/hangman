@@ -30,9 +30,9 @@ type SingleGameManualProps = {
 
 export default function GameManualBoard() {
   return (
-    <section className="mx-auto flex w-full max-w-sm flex-col gap-y-24 py-4">
+    <section className="mx-auto flex w-full max-w-sm flex-col gap-y-24 pt-8 sm:max-w-[680px] sm:pt-[61px]">
       <HeaderWrapper>
-        <Link to="/">
+        <Link to="/" className="sm:absolute sm:left-0">
           <IconButton icon={backIcon} />
         </Link>
         <Heading>How to Play</Heading>
@@ -53,11 +53,13 @@ export default function GameManualBoard() {
 function SingleGameManual({ instruction, index }: SingleGameManualProps) {
   return (
     <article className="grid-row-2 grid grid-cols-[20px_1fr] gap-4 rounded-3xl bg-white p-8">
-      <p className="text-2xl text-blue">{addLeadingZero(index + 1)}</p>
+      <p className="text-2xl text-blue sm:row-span-2 sm:flex sm:items-center sm:justify-center sm:text-heading-l">
+        {addLeadingZero(index + 1)}
+      </p>
       <h3 className="text-2xl uppercase tracking-wide text-dark-navy">
         {instruction.title}
       </h3>
-      <p className="col-span-2 tracking-wide text-violet">
+      <p className="col-span-2 tracking-wide text-violet sm:col-span-1">
         {instruction.description}
       </p>
     </article>

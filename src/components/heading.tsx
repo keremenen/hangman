@@ -9,7 +9,7 @@ export default function Heading({ children, className }: HeadingProps) {
   return (
     <h1
       className={cn(
-        "bg-heading-blue-gradient text-stroke bg-clip-text text-5xl text-transparent",
+        "text-stroke bg-heading-blue-gradient bg-clip-text text-5xl text-transparent sm:text-[6.5rem]",
         className,
       )}
     >
