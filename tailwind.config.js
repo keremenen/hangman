@@ -11,6 +11,43 @@ export default {
         blue: "#2463ff",
         violet: "#887DC0",
       },
+      fontSize: {
+        "heading-xl": [
+          "7.5rem",
+          {
+            lineHeight: "120%",
+            letterSpacing: "-0.005em",
+          },
+        ],
+        "heading-l": [
+          "5.5rem",
+          {
+            lineHeight: "120%",
+            letterSpacing: "0em",
+          },
+        ],
+        "heading-m": [
+          "3rem",
+          {
+            lineHeight: "120%",
+            letterSpacing: "0.05em",
+          },
+        ],
+        "heading-s": [
+          "2rem",
+          {
+            lineHeight: "120%",
+            letterSpacing: "0.05em",
+          },
+        ],
+        body: [
+          "1.625rem",
+          {
+            lineHeight: "120%",
+            letterSpacing: "0.15em",
+          },
+        ],
+      },
       backgroundImage: {
         "heading-blue-gradient": "linear-gradient(180deg, #67B6FF, #FFFFFF)",
         "mobile-background": "url('/images/background-mobile.svg')",

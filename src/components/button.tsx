@@ -10,11 +10,11 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const buttonVariants = cva(
-  "px-16 py-2 text-3xl uppercase tracking-[2.3px] rounded-full min-h-[62px] whitespace-nowrap disabled:opacity-50 disabled:pointer-events-none transition-color ease-in-out duration-200",
+  "px-16 py-2 text-heading-s uppercase rounded-full min-h-[62px] whitespace-nowrap disabled:opacity-50 disabled:pointer-events-none transition-color ease-in-out duration-200",
   {
     variants: {
       variant: {
-        default: "bg-blue shadow-primary-button hover:brightness-125",
+        default: "bg-blue shadow-primary-button hover:bg-[#5B8AFF]",
         secondary: "bg-pink-gradient shadow-secondary hover:brightness-125",
         square: "rounded-2xl py-5 text-2xl",
       },
