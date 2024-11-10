@@ -15,7 +15,7 @@ export default function MainMenuBoard() {
             <PlayButton />
           </Link>
           <Link to={"/instructions"}>
-            <Button>how to play</Button>
+            <Button variant="secondary">how to play</Button>
           </Link>
         </div>
       </div>

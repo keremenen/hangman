@@ -13,8 +13,9 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-blue shadow-primary-button hover:bg-[#5B8AFF]",
-        secondary: "bg-pink-gradient shadow-secondary hover:brightness-125",
+        primary: "bg-blue shadow-primary-button hover:brightness-125",
+        secondary:
+          "bg-pink-gradient shadow-secondary-button hover:brightness-125",
       },
     },
     defaultVariants: {
