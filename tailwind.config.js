@@ -51,8 +51,10 @@ export default {
       backgroundImage: {
         "heading-blue-gradient": "linear-gradient(180deg, #67B6FF, #FFFFFF)",
         "mobile-background": "url('/images/background-mobile.svg')",
+        "tablet-background": "url('/images/background-tablet.svg')",
+        "desktop-background": "url('/images/background-desktop.svg')",
         "pink-gradient": `linear-gradient(#fe71fe, #7199FF)`,
-        "secondary-pink-gradient": `linear-gradient(#FF95FF, #B0C6FF)`,
+        "secondary-pink-gradient": `linear-gradient(#FF95FF, #7199FF)`,
         "blue-gradient": `linear-gradient(#344abae6, #001479e6)`,
       },
       boxShadow: {
