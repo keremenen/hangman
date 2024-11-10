@@ -1,9 +1,8 @@
-import playIcon from "../assets/images/icon-play.svg";
-
+import PlayButtonIcon from "../assets/images/icon-play.svg?react";
 export default function PlayButton() {
   return (
-    <button className="after:shadow-secondary-button relative flex size-40 items-center justify-center rounded-full bg-pink-gradient after:absolute after:size-full after:rounded-full after:content-['']">
-      <img src={playIcon} alt="play" className="size-14" />
+    <button className="transition-color relative flex size-40 items-center justify-center rounded-full bg-pink-gradient shadow-secondary-button duration-300 hover:brightness-125">
+      <PlayButtonIcon className="w-[3.375rem]" />
     </button>
   );
 }

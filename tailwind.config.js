@@ -52,6 +52,7 @@ export default {
         "heading-blue-gradient": "linear-gradient(180deg, #67B6FF, #FFFFFF)",
         "mobile-background": "url('/images/background-mobile.svg')",
         "pink-gradient": `linear-gradient(#fe71fe, #7199FF)`,
+        "secondary-pink-gradient": `linear-gradient(#FF95FF, #B0C6FF)`,
         "blue-gradient": `linear-gradient(#344abae6, #001479e6)`,
       },
       boxShadow: {
@@ -59,7 +60,10 @@ export default {
         "primary-button":
           "inset 0 -2px 0 3px #140E66, inset 0 1px 0 6px #3C74FF",
         "secondary-button":
-          "inset 0 -4px 0 5px #243041, inset 0 -12px 0 11px #9D2DF5",
+          "inset 0px -4px 0 5px #243041, inset 0 -12px 0 11px #9D2DF5",
+      },
+      dropShadow: {
+        primary: "innet 2px 4px 0px #243041",
       },
       //
     },
