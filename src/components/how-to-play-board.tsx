@@ -6,7 +6,7 @@ import backIcon from "../assets/images/icon-back.svg";
 
 export default function HowToPlayBoard() {
   return (
-    <section className="mx-auto grid w-full max-w-sm gap-24 py-4">
+    <section className="mx-auto grid w-full max-w-[320px] gap-24 py-4">
       <HeaderWrapper>
         <IconButton icon={backIcon} />
         <Heading>How to Play</Heading>
