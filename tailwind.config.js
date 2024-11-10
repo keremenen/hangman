@@ -58,7 +58,7 @@ export default {
         "blue-gradient": `linear-gradient(#344abae6, #001479e6)`,
       },
       boxShadow: {
-        "primary-box": "inset 0 -8px 0 0px #140e66, inset 0 6px 0 0px #2463FF",
+        "primary-box": "inset 0 -8px 0 4px #140e66, inset 0 6px 0 8px #2463FF",
         "primary-button":
           "inset 0 -2px 0 3px #140E66, inset 0 1px 0 6px #3C74FF",
         "secondary-button":
