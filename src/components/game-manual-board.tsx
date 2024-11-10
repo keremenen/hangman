@@ -4,6 +4,7 @@ import HeaderWrapper from "./header-wrapper";
 import IconButton from "./icon-button";
 import Heading from "./heading";
 import backIcon from "../assets/images/icon-back.svg";
+import Container from "./container";
 
 const hangmanGameInstructions = [
   {
@@ -30,7 +31,7 @@ type SingleGameManualProps = {
 
 export default function GameManualBoard() {
   return (
-    <section className="mx-auto flex w-full max-w-[324px] flex-col gap-y-[79px] pt-8 sm:max-w-[680px] sm:gap-y-[100px] sm:pt-[61px]">
+    <Container>
       <HeaderWrapper>
         <Link to="/" className="sm:absolute sm:left-0">
           <IconButton icon={backIcon} />
@@ -38,20 +39,24 @@ export default function GameManualBoard() {
         <Heading>How to Play</Heading>
       </HeaderWrapper>
 
-      <section className="flex flex-col gap-6 sm:gap-8">
+      <GameInstructions>
         {hangmanGameInstructions.map((instruction, index) => (
-          <SingleGameManual
+          <SingleGameInstruction
             instruction={instruction}
             key={index}
             index={index}
           />
         ))}
-      </section>
-    </section>
+      </GameInstructions>
+    </Container>
   );
 }
 
-function SingleGameManual({ instruction, index }: SingleGameManualProps) {
+function GameInstructions({ children }: { children: React.ReactNode }) {
+  return <section className="flex flex-col gap-6 sm:gap-8">{children}</section>;
+}
+
+function SingleGameInstruction({ instruction, index }: SingleGameManualProps) {
   return (
     <article className="grid-row-2 grid grid-cols-[auto_1fr] items-center gap-4 rounded-[20px] bg-white p-8 sm:gap-x-10 sm:rounded-[40px] sm:px-10">
       <p className="text-[24px] tracking-wider text-blue sm:row-span-2 sm:flex sm:items-center sm:justify-center sm:text-heading-l">
