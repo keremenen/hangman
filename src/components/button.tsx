@@ -14,7 +14,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-blue shadow-primary hover:brightness-125",
+        default: "bg-blue shadow-primary-button hover:brightness-125",
         secondary: "bg-pink-gradient shadow-secondary hover:brightness-125",
         square: "rounded-2xl py-5 text-2xl",
       },
