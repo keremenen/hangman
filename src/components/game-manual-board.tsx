@@ -32,8 +32,8 @@ type SingleGameManualProps = {
 
 export default function GameManualBoard() {
   return (
-    <FullPageContainer className="pt-[31px] md:pt-[61px] lg:pt-20">
-      <Container className="px-[10px] md:max-w-[76rem]">
+    <FullPageContainer className="pt-[31px] sm:pt-[61px] lg:pt-20">
+      <Container className="md:max-w-[76rem]">
         <HeaderWrapper>
           <Link to="/" className="sm:absolute sm:left-0">
             <IconButton icon={backIcon} />
@@ -41,7 +41,7 @@ export default function GameManualBoard() {
           <Heading>How to Play</Heading>
         </HeaderWrapper>
 
-        <GameInstructions className="mt-[79px] md:mt-[69px]">
+        <GameInstructions className="mt-[79px] sm:mt-[100px] lg:mt-[69px]">
           {hangmanGameInstructions.map((instruction, index) => (
             <SingleGameInstruction
               instruction={instruction}
@@ -72,19 +72,17 @@ function GameInstructions({ children, className }: GameInstructionsProps) {
 
 function SingleGameInstruction({ instruction, index }: SingleGameManualProps) {
   return (
-    <article className="grid grid-cols-[auto_1fr] grid-rows-[auto_auto] gap-4 rounded-[20px] bg-white p-8">
+    <article className="grid grid-cols-[auto_1fr] grid-rows-[auto_auto] items-center gap-4 rounded-[20px] bg-white p-8 sm:gap-x-10 sm:rounded-[40px] sm:px-10 lg:basis-1/3 lg:grid-cols-1 lg:grid-rows-[auto_auto_1fr] lg:gap-y-10 lg:px-10 lg:py-[60px] lg:text-center">
       {/* SEPAR */}
-      <p className="text-[24px] leading-[1.20] tracking-wider text-blue">
+      <p className="text-[24px] leading-[1.20] tracking-wider text-blue sm:row-span-2 sm:text-heading-l lg:row-span-1">
         {addLeadingZero(index + 1)}
       </p>
-      <h3 className="text-nowrap text-[24px] uppercase leading-[1.20] tracking-wider text-dark-navy">
+      <h3 className="text-[24px] uppercase leading-[1.20] tracking-wider text-dark-navy sm:text-[40px] lg:text-heading-m">
         {instruction.title}
       </h3>
-      <p className="col-span-2 text-[16px] leading-[1.20] tracking-wider text-violet">
+      <p className="col-span-2 text-[16px] leading-[1.20] tracking-wider text-violet sm:col-span-1 sm:text-[20px] lg:self-start lg:text-body">
         {instruction.description}
       </p>
     </article>
   );
 }
-
-// grid grid-cols-[auto_1fr] grid-rows-3 items-center gap-4 rounded-[20px] bg-white p-8 sm:gap-x-10 sm:rounded-[40px] sm:px-10 lg:h-[550px] lg:w-full lg:grid-cols-[1fr] lg:grid-rows-[auto_auto_auto] lg:gap-y-10 lg:px-12 lg:pt-[60px] lg:text-center
