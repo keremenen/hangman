@@ -5,7 +5,7 @@ type PageContainerProps = {
   className?: string;
 };
 
-export default function PageContainer({
+export default function FullPageContainer({
   children,
   className,
 }: PageContainerProps) {

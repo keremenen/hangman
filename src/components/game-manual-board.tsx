@@ -5,7 +5,7 @@ import IconButton from "./icon-button";
 import Heading from "./heading";
 import backIcon from "../assets/images/icon-back.svg";
 import Container from "./container";
-import PageContainer from "./page-container";
+import FullPageContainer from "./full-page-container";
 
 const hangmanGameInstructions = [
   {
@@ -32,7 +32,7 @@ type SingleGameManualProps = {
 
 export default function GameManualBoard() {
   return (
-    <PageContainer className="pt-[61px] sm:pt-20">
+    <FullPageContainer className="pt-[61px] sm:pt-20">
       <Container>
         <HeaderWrapper>
           <Link to="/" className="sm:absolute sm:left-0">
@@ -51,7 +51,7 @@ export default function GameManualBoard() {
           ))}
         </GameInstructions>
       </Container>
-    </PageContainer>
+    </FullPageContainer>
   );
 }
 
