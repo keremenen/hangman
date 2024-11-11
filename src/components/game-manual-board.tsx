@@ -32,8 +32,8 @@ type SingleGameManualProps = {
 
 export default function GameManualBoard() {
   return (
-    <FullPageContainer className="pt-[31px] sm:pt-[61px] lg:pt-20">
-      <Container className="md:max-w-[76rem]">
+    <FullPageContainer className="pt-8 sm:pt-[61px] lg:pt-20">
+      <Container className="lg:max-w-[76rem]">
         <HeaderWrapper>
           <Link to="/" className="sm:absolute sm:left-0">
             <IconButton icon={backIcon} />
