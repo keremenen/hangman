@@ -5,6 +5,7 @@ import IconButton from "./icon-button";
 import Heading from "./heading";
 import backIcon from "../assets/images/icon-back.svg";
 import Container from "./container";
+import PageContainer from "./page-container";
 
 const hangmanGameInstructions = [
   {
@@ -31,24 +32,26 @@ type SingleGameManualProps = {
 
 export default function GameManualBoard() {
   return (
-    <Container>
-      <HeaderWrapper>
-        <Link to="/" className="sm:absolute sm:left-0">
-          <IconButton icon={backIcon} />
-        </Link>
-        <Heading>How to Play</Heading>
-      </HeaderWrapper>
+    <PageContainer className="pt-[61px] sm:pt-20">
+      <Container>
+        <HeaderWrapper>
+          <Link to="/" className="sm:absolute sm:left-0">
+            <IconButton icon={backIcon} />
+          </Link>
+          <Heading>How to Play</Heading>
+        </HeaderWrapper>
 
-      <GameInstructions>
-        {hangmanGameInstructions.map((instruction, index) => (
-          <SingleGameInstruction
-            instruction={instruction}
-            key={index}
-            index={index}
-          />
-        ))}
-      </GameInstructions>
-    </Container>
+        <GameInstructions>
+          {hangmanGameInstructions.map((instruction, index) => (
+            <SingleGameInstruction
+              instruction={instruction}
+              key={index}
+              index={index}
+            />
+          ))}
+        </GameInstructions>
+      </Container>
+    </PageContainer>
   );
 }
 

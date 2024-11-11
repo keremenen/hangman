@@ -13,7 +13,7 @@ export default {
       },
       fontSize: {
         "heading-xl": [
-          "7.5rem",
+          "8.5rem",
           {
             lineHeight: "120%",
             letterSpacing: "-0.005em",
