@@ -44,7 +44,6 @@ export default {
           "1.625rem",
           {
             lineHeight: "120%",
-            letterSpacing: "0.15em",
           },
         ],
       },
