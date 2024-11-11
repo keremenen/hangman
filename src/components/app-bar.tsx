@@ -11,7 +11,7 @@ export default function AppBar() {
 
   return (
     <HeaderWrapper className="sm:justify-between">
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 sm:gap-8 lg:gap-[57px]">
         <IconButton icon={menuIcon} onClick={togglePause} className="z-20" />
         {selectedCategory && (
           <h1 className="text-4xl capitalize sm:text-heading-m lg:text-heading-l">
