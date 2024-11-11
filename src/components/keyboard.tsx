@@ -3,7 +3,7 @@ import { useGameStore } from "../stores/gameStore";
 import { alphabet } from "../lib/const";
 import { useEffect } from "react";
 
-export default function Keyboard() {
+export default function Keyboard({ className }: { className?: string }) {
   const handleKeyboardClick = useGameStore(
     (state) => state.handleKeyboardClick,
   );
@@ -23,7 +23,13 @@ export default function Keyboard() {
   }, [handleKeyboardClick]);
 
   return (
-    <section className="mb-40 mt-auto flex flex-wrap justify-center gap-x-2 gap-y-4">
+    <section
+      className={cn(
+        "grid grid-cols-9 gap-x-2 gap-y-6 sm:gap-x-4",
+        // "mb-40 mt-auto flex flex-wrap justify-center gap-x-2 gap-y-4",
+        className,
+      )}
+    >
       {alphabet.map((letter, index) => (
         <KeyboardTile
           key={index}
@@ -47,7 +53,7 @@ function KeyboardTile({ onClick, letter, isDisabled }: KeyboardTileProps) {
   return (
     <button
       className={cn(
-        "flex items-center justify-center rounded-xl bg-white px-3 py-3 text-2xl text-dark-navy",
+        "flex h-[56px] w-[29px] items-center justify-center rounded-[8px] bg-white text-[24px] text-dark-navy sm:h-[84px] sm:w-[64px] sm:rounded-[24px] sm:text-heading-m lg:h-[84px] lg:w-[109px]",
         {
           "opacity-20": isDisabled,
         },

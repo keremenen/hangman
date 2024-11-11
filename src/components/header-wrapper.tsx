@@ -1,10 +1,21 @@
+import { cn } from "../lib/utils";
+
+type HeaderWrapperProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+
 export default function HeaderWrapper({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+  className,
+}: HeaderWrapperProps) {
   return (
-    <header className="relative flex items-center justify-between sm:justify-center">
+    <header
+      className={cn(
+        "relative flex items-center justify-between sm:justify-center",
+        className,
+      )}
+    >
       {children}
     </header>
   );

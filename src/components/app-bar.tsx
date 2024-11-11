@@ -10,11 +10,13 @@ export default function AppBar() {
   const health = useGameStore((state) => state.health);
 
   return (
-    <HeaderWrapper>
+    <HeaderWrapper className="sm:justify-between">
       <div className="flex items-center gap-4">
         <IconButton icon={menuIcon} onClick={togglePause} className="z-20" />
         {selectedCategory && (
-          <h1 className="text-4xl capitalize">{selectedCategory}</h1>
+          <h1 className="text-4xl capitalize sm:text-heading-m lg:text-heading-l">
+            {selectedCategory}
+          </h1>
         )}
       </div>
 
