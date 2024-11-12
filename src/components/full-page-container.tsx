@@ -10,7 +10,7 @@ export default function FullPageContainer({
   className,
 }: PageContainerProps) {
   return (
-    <section className={cn("flex justify-center", className)}>
+    <section className={cn("flex min-h-screen justify-center", className)}>
       {children}
     </section>
   );

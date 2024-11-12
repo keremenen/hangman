@@ -8,7 +8,7 @@ import AbsoluteContainer from "../absolute-container";
 
 export default function MainMenuBoard() {
   return (
-    <FullPageContainer className="pt-[12.6875rem] sm:pt-[19.8125rem] md:pt-[19.6875rem]">
+    <FullPageContainer className="flex items-center justify-center">
       <StyledContainer className="h-[30.0625rem] w-[20.25rem] sm:h-[31.25rem] sm:w-[37rem]">
         <AbsoluteContainer className="-mt-20 w-[16.4375rem] sm:w-[23.3125rem]">
           <Logo />
