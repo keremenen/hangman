@@ -5,7 +5,6 @@ import { Categories } from "./lib/types";
 import { useEffect } from "react";
 
 //Components
-
 import GameModal from "./components/game-modal";
 import MainMenuBoard from "./components/boards/main-menu-board";
 import GameManualBoard from "./components/boards/game-manual-board";
@@ -13,12 +12,16 @@ import InGameBoard from "./components/boards/in-game-board";
 import CategoryPickBoard from "./components/boards/category-pick-board";
 
 function App() {
+  // Load data
   const setData = useGameStore((state) => state.setData);
   const data = useGameStore((state) => state.data);
 
+  // Start game with selected category
   const startGameWithSelectedCategory = useGameStore(
     (state) => state.startGameWithSelectedCategory,
   );
+
+  // Modals
   const isPaused = useGameStore((state) => state.isPaused);
   const isWon = useGameStore((state) => state.isWon);
   const isLose = useGameStore((state) => state.isLose);
@@ -28,7 +31,7 @@ function App() {
     setData();
   }, [setData]);
 
-  // Start game with selected category from URL
+  // If url has category, start game with that category
   useEffect(() => {
     if (data) {
       const category = unslugify(getCategoryNameFromUrl());
@@ -47,9 +50,10 @@ function App() {
           <Route path="/categories" element={<CategoryPickBoard />} />
           <Route path="/app" element={<InGameBoard />} />
         </Routes>
-        {isPaused && <GameModal type="Paused" />}
-        {isWon && <GameModal type="You Win" />}
-        {isLose && <GameModal type="You Lose" />}
+
+        {isPaused && <GameModal type="Pause" />}
+        {isWon && <GameModal type="Won" />}
+        {isLose && <GameModal type="Lost" />}
       </Router>
     </div>
   );

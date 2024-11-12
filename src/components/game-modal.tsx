@@ -5,7 +5,7 @@ import { useGameStore } from "../stores/gameStore";
 import { Link } from "react-router-dom";
 
 type GameModalProps = {
-  type: "Paused" | "You Win" | "You Lose";
+  type: "Pause" | "Won" | "Lost";
 };
 
 export default function GameModal({ type }: GameModalProps) {
@@ -28,8 +28,8 @@ export default function GameModal({ type }: GameModalProps) {
         </ModalHeader>
         <ModalOptions>
           <p className="text-4xl">Password was: {word}</p>
-          {type === "Paused" && <Button onClick={togglePause}>Continue</Button>}
-          {(type === "You Win" || type === "You Lose") && (
+          {type === "Pause" && <Button onClick={togglePause}>Continue</Button>}
+          {(type === "Won" || type === "Lost") && (
             <Button
               onClick={() => startGameWithSelectedCategory(selectedCategory!)}
             >
