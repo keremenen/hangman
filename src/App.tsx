@@ -5,11 +5,12 @@ import { Categories } from "./lib/types";
 import { useEffect } from "react";
 
 //Components
-import CategoryPickBoard from "./components/pages/category-pick-board";
-import GameManualBoard from "./components/pages/game-manual-board";
-import MainMenuBoard from "./components/pages/main-menu-board";
-import InGameBoard from "./components/pages/in-game-board";
+
 import GameModal from "./components/game-modal";
+import MainMenuBoard from "./components/boards/main-menu-board";
+import GameManualBoard from "./components/boards/game-manual-board";
+import InGameBoard from "./components/boards/in-game-board";
+import CategoryPickBoard from "./components/boards/category-pick-board";
 
 function App() {
   const setData = useGameStore((state) => state.setData);
@@ -28,8 +29,6 @@ function App() {
   }, [setData]);
 
   // Start game with selected category from URL
-  // This will generate a new word every page refresh ...
-  /// ... and when user enter url with category
   useEffect(() => {
     if (data) {
       const category = unslugify(getCategoryNameFromUrl());

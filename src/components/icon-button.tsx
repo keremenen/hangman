@@ -1,7 +1,8 @@
+import React from "react";
 import { cn } from "../lib/utils";
 
 type IconButtonProps = {
-  icon: string;
+  icon: React.JSX.Element;
   onClick?: () => void;
   className?: string;
 };
@@ -19,7 +20,7 @@ export default function IconButton({
       )}
       onClick={onClick}
     >
-      <img src={icon} alt="back" className="size-5 sm:size-8 lg:size-10" />
+      {icon}
     </button>
   );
 }

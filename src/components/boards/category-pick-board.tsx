@@ -1,6 +1,6 @@
 import HeaderWrapper from "../header-wrapper";
 import IconButton from "../icon-button";
-import backIcon from "../assets/images/icon-back.svg";
+import BackIcon from "../../assets/images/icon-back.svg?react";
 import Heading from "../heading";
 import { Link } from "react-router-dom";
 import { useGameStore } from "../../stores/gameStore";
@@ -22,7 +22,7 @@ export default function CategoryPickBoard() {
       <Container className="w-full lg:max-w-[76rem]">
         <HeaderWrapper>
           <Link to="/" className="sm:absolute sm:left-0">
-            <IconButton icon={backIcon} />
+            <IconButton icon={<BackIcon />} />
           </Link>
           <Heading>Pick a Category</Heading>
         </HeaderWrapper>

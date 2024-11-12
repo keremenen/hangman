@@ -3,7 +3,7 @@ import { addLeadingZero, cn } from "../../lib/utils";
 import HeaderWrapper from "../header-wrapper";
 import IconButton from "../icon-button";
 import Heading from "../heading";
-import backIcon from "../assets/images/icon-back.svg";
+import BackIcon from "../../assets/images/icon-back.svg";
 import Container from "../container";
 import FullPageContainer from "../full-page-container";
 
@@ -36,7 +36,7 @@ export default function GameManualBoard() {
       <Container className="lg:max-w-[76rem]">
         <HeaderWrapper>
           <Link to="/" className="sm:absolute sm:left-0">
-            <IconButton icon={backIcon} />
+            <IconButton icon={<BackIcon />} />
           </Link>
           <Heading>How to Play</Heading>
         </HeaderWrapper>
