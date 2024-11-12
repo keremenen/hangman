@@ -42,7 +42,7 @@ function App() {
   }, [data, startGameWithSelectedCategory]);
 
   return (
-    <div className="px-7">
+    <>
       <Router>
         <Routes>
           <Route path="/" element={<MainMenuBoard />} />
@@ -55,7 +55,7 @@ function App() {
         {isWon && <GameModal type="Won" />}
         {isLose && <GameModal type="Lost" />}
       </Router>
-    </div>
+    </>
   );
 }
 

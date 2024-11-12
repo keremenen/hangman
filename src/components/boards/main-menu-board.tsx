@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+
+//Components
 import Button from "../button";
 import Logo from "../logo";
 import PlayButton from "../play-button";

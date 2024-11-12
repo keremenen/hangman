@@ -1,29 +1,14 @@
 import { Link } from "react-router-dom";
 import { addLeadingZero, cn } from "../../lib/utils";
+
+// Icons
+import BackIcon from "../../assets/images/icon-back.svg?react";
+
+//Components
 import HeaderWrapper from "../header-wrapper";
 import IconButton from "../icon-button";
 import Heading from "../heading";
-import BackIcon from "../../assets/images/icon-back.svg";
-import Container from "../container";
 import FullPageContainer from "../full-page-container";
-
-const hangmanGameInstructions = [
-  {
-    title: "Choose a category",
-    description:
-      "First, choose a word category, like animals or movies. The computer then randomly selects a secret word from that topic and shows you blanks for each letter of the word.",
-  },
-  {
-    title: "Guess letters",
-    description:
-      "Take turns guessing letters. The computer fills in the relevant blank spaces if your guess is correct. If it’s wrong, you lose some health, which empties after eight incorrect guesses.",
-  },
-  {
-    title: "Win or lose",
-    description:
-      "You win by guessing all the letters in the word before your health runs out. If the health bar empties before you guess the word, you lose.",
-  },
-];
 
 type SingleGameManualProps = {
   instruction: { title: string; description: string };
@@ -32,25 +17,28 @@ type SingleGameManualProps = {
 
 export default function GameManualBoard() {
   return (
-    <FullPageContainer className="pt-8 sm:pt-[61px] lg:pt-20">
-      <Container className="lg:max-w-[76rem]">
-        <HeaderWrapper>
-          <Link to="/" className="sm:absolute sm:left-0">
-            <IconButton icon={<BackIcon />} />
-          </Link>
-          <Heading>How to Play</Heading>
-        </HeaderWrapper>
+    <FullPageContainer
+      isCentered={false}
+      className="pt-8 sm:pt-16 lg:max-w-[76rem] lg:pt-20"
+    >
+      <HeaderWrapper>
+        <Link to="/" className="sm:absolute sm:left-0">
+          <IconButton
+            icon={<BackIcon className="size-4 sm:size-7 lg:size-10" />}
+          />
+        </Link>
+        <Heading>How to Play</Heading>
+      </HeaderWrapper>
 
-        <GameInstructions className="mt-[79px] sm:mt-[100px] lg:mt-[69px]">
-          {hangmanGameInstructions.map((instruction, index) => (
-            <SingleGameInstruction
-              instruction={instruction}
-              key={index}
-              index={index}
-            />
-          ))}
-        </GameInstructions>
-      </Container>
+      <GameInstructions className="mt-[79px] sm:mt-[100px] lg:mt-[69px]">
+        {hangmanGameInstructions.map((instruction, index) => (
+          <SingleGameInstruction
+            instruction={instruction}
+            key={index}
+            index={index}
+          />
+        ))}
+      </GameInstructions>
     </FullPageContainer>
   );
 }

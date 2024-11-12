@@ -14,9 +14,11 @@ export default function FullPageContainer({
   return (
     <section
       className={cn(
-        "flex min-h-screen",
-        isCentered ? "items-center justify-center" : "justify-center",
+        "mx-auto flex min-h-screen flex-col justify-start",
         className,
+        {
+          "items-center justify-center": isCentered,
+        },
       )}
     >
       {children}

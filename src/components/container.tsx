@@ -7,5 +7,5 @@ type ContainerProps = {
 };
 
 export default function Container({ children, className }: ContainerProps) {
-  return <section className={cn("", className)}>{children}</section>;
+  return <section className={cn("mx-auto", className)}>{children}</section>;
 }
