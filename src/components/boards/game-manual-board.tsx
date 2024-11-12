@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { addLeadingZero, cn } from "../lib/utils";
-import HeaderWrapper from "./header-wrapper";
-import IconButton from "./icon-button";
-import Heading from "./heading";
+import { addLeadingZero, cn } from "../../lib/utils";
+import HeaderWrapper from "../header-wrapper";
+import IconButton from "../icon-button";
+import Heading from "../heading";
 import backIcon from "../assets/images/icon-back.svg";
-import Container from "./container";
-import FullPageContainer from "./full-page-container";
+import Container from "../container";
+import FullPageContainer from "../full-page-container";
 
 const hangmanGameInstructions = [
   {

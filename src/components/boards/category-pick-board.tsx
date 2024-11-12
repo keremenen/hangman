@@ -1,14 +1,14 @@
-import HeaderWrapper from "./header-wrapper";
-import IconButton from "./icon-button";
+import HeaderWrapper from "../header-wrapper";
+import IconButton from "../icon-button";
 import backIcon from "../assets/images/icon-back.svg";
-import Heading from "./heading";
+import Heading from "../heading";
 import { Link } from "react-router-dom";
-import { useGameStore } from "../stores/gameStore";
-import { cn, slugify } from "../lib/utils";
-import { Categories } from "../lib/types";
-import Container from "./container";
-import FullPageContainer from "./full-page-container";
-import CategoryButton from "./category-button";
+import { useGameStore } from "../../stores/gameStore";
+import { cn, slugify } from "../../lib/utils";
+import { Categories } from "../../lib/types";
+import Container from "../container";
+import FullPageContainer from "../full-page-container";
+import CategoryButton from "../category-button";
 
 export default function CategoryPickBoard() {
   const getAllCategories = useGameStore((state) => state.getAllCategories);

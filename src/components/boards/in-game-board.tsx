@@ -1,8 +1,8 @@
-import HiddenLetters from "./hidden-letters";
-import Keyboard from "./keyboard";
-import AppBar from "./app-bar";
-import FullPageContainer from "./full-page-container";
-import Container from "./container";
+import HiddenLetters from "../hidden-letters";
+import Keyboard from "../keyboard";
+import AppBar from "../app-bar";
+import FullPageContainer from "../full-page-container";
+import Container from "../container";
 
 export default function InGameBoard() {
   return (

@@ -5,10 +5,10 @@ import { Categories } from "./lib/types";
 import { useEffect } from "react";
 
 //Components
-import CategoryPickBoard from "./components/category-pick-board";
-import GameManualBoard from "./components/game-manual-board";
-import MainMenuBoard from "./components/main-menu-board";
-import InGameBoard from "./components/in-game-board";
+import CategoryPickBoard from "./components/pages/category-pick-board";
+import GameManualBoard from "./components/pages/game-manual-board";
+import MainMenuBoard from "./components/pages/main-menu-board";
+import InGameBoard from "./components/pages/in-game-board";
 import GameModal from "./components/game-modal";
 
 function App() {

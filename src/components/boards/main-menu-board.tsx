@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import Button from "./button";
-import Logo from "./logo";
-import PlayButton from "./play-button";
-import StyledContainer from "./styled-container";
-import FullPageContainer from "./full-page-container";
-import AbsoluteContainer from "./absolute-container";
+import Button from "../button";
+import Logo from "../logo";
+import PlayButton from "../play-button";
+import StyledContainer from "../styled-container";
+import FullPageContainer from "../full-page-container";
+import AbsoluteContainer from "../absolute-container";
 
 export default function MainMenuBoard() {
   return (
