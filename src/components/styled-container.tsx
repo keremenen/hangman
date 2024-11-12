@@ -12,7 +12,7 @@ export default function StyledContainer({
   return (
     <div
       className={cn(
-        "relative flex h-full flex-col items-center rounded-[3rem] bg-blue-gradient shadow-primary-box sm:rounded-[4.5rem]",
+        "relative flex w-full flex-col items-center rounded-[3rem] bg-blue-gradient py-28 pb-16 shadow-primary-box sm:max-w-xl sm:rounded-[4.5rem]",
         className,
       )}
     >

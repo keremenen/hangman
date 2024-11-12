@@ -8,18 +8,18 @@ import AbsoluteContainer from "../absolute-container";
 
 export default function MainMenuBoard() {
   return (
-    <FullPageContainer className="flex items-center justify-center">
-      <StyledContainer className="h-[30.0625rem] w-[20.25rem] sm:h-[31.25rem] sm:w-[37rem]">
-        <AbsoluteContainer className="-mt-20 w-[16.4375rem] sm:w-[23.3125rem]">
+    <FullPageContainer isCentered>
+      <StyledContainer>
+        <AbsoluteContainer className="-top-[6rem] max-w-72 sm:max-w-max">
           <Logo />
         </AbsoluteContainer>
 
-        <Link to="/categories" className="mt-[8.625rem] sm:mt-[8.0625rem]">
+        <Link to="/categories" className="mb-14">
           <PlayButton />
         </Link>
 
         <Link to={"/instructions"}>
-          <Button className="mt-[3.625rem]">how to play</Button>
+          <Button>how to play</Button>
         </Link>
       </StyledContainer>
     </FullPageContainer>

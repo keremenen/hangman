@@ -42,7 +42,7 @@ function App() {
   }, [data, startGameWithSelectedCategory]);
 
   return (
-    <div className="px-[25px]">
+    <div className="px-7">
       <Router>
         <Routes>
           <Route path="/" element={<MainMenuBoard />} />

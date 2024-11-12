@@ -1,5 +1,5 @@
 import AppLogo from "../assets/images/logo.svg?react";
 
 export default function Logo() {
-  return <AppLogo className="w-full" />;
+  return <AppLogo className="w-full max-w-[23rem]" />;
 }
