@@ -14,6 +14,7 @@ import CategoryPickBoard from "./components/boards/category-pick-board";
 function App() {
   // Load data
   const setData = useGameStore((state) => state.setData);
+  const setInstructions = useGameStore((state) => state.setInstructions);
   const data = useGameStore((state) => state.data);
 
   // Start game with selected category
@@ -26,10 +27,11 @@ function App() {
   const isWon = useGameStore((state) => state.isWon);
   const isLose = useGameStore((state) => state.isLose);
 
-  // Set data on app mount
+  // Set data and game instructions on app mount
   useEffect(() => {
     setData();
-  }, [setData]);
+    setInstructions();
+  }, [setData, setInstructions]);
 
   // If url has category, start game with that category
   useEffect(() => {

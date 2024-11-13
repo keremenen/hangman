@@ -1,3 +1,11 @@
-export const useLoadDataFromJson = async (url: string) => {
-  return fetch(url).then((res) => res.json());
+export const fetchData = async (url: string) => {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
 };

@@ -14,8 +14,10 @@ type GameStore = {
   data: CategoryTree | null;
   isLose: boolean;
   isWon: boolean;
+  instructions: { title: string; description: string }[] | null;
 
   setData: () => void;
+  setInstructions: () => void;
   setNewWord: (word: string) => void;
   setCategory: (category: Categories) => void;
   togglePause: () => void;
@@ -49,6 +51,7 @@ export const useGameStore = create(
       visibleLetters: [],
       clickedLetters: [],
       data: null,
+      instructions: null,
 
       setData: async () => {
         try {
@@ -58,6 +61,19 @@ export const useGameStore = create(
           }
           const data: CategoryTree = await response.json();
           set({ data });
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      },
+
+      setInstructions: async () => {
+        try {
+          const reponse = await fetch("data/game-instructions.json");
+          if (!reponse.ok) {
+            throw new Error("Network response was not ok");
+          }
+          const { instructions } = await reponse.json();
+          set({ instructions });
         } catch (error) {
           console.error("Error fetching data:", error);
         }

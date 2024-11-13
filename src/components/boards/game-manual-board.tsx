@@ -9,6 +9,7 @@ import HeaderWrapper from "../header-wrapper";
 import IconButton from "../icon-button";
 import Heading from "../heading";
 import FullPageContainer from "../full-page-container";
+import useGameStore from "../../stores/gameStore";
 
 type SingleGameManualProps = {
   instruction: { title: string; description: string };
@@ -16,6 +17,10 @@ type SingleGameManualProps = {
 };
 
 export default function GameManualBoard() {
+  const hangmanGameInstructions = useGameStore((state) => state.instructions);
+
+  console.log(hangmanGameInstructions);
+
   return (
     <FullPageContainer
       isCentered={false}
@@ -31,13 +36,14 @@ export default function GameManualBoard() {
       </HeaderWrapper>
 
       <GameInstructions className="mt-[79px] sm:mt-[100px] lg:mt-[69px]">
-        {hangmanGameInstructions.map((instruction, index) => (
-          <SingleGameInstruction
-            instruction={instruction}
-            key={index}
-            index={index}
-          />
-        ))}
+        {hangmanGameInstructions &&
+          hangmanGameInstructions.map((instruction, index) => (
+            <SingleGameInstruction
+              instruction={instruction}
+              key={index}
+              index={index}
+            />
+          ))}
       </GameInstructions>
     </FullPageContainer>
   );
