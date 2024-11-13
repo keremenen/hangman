@@ -12,7 +12,7 @@ export default function HeaderWrapper({
   return (
     <header
       className={cn(
-        "relative flex items-center justify-between sm:justify-center",
+        "relative flex w-full items-center justify-between sm:justify-center",
         className,
       )}
     >
