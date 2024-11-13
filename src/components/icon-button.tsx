@@ -20,7 +20,7 @@ export default function IconButton({
       )}
       onClick={onClick}
     >
-      {icon}
+      {React.cloneElement(icon, { className: "size-4 sm:size-7 lg:size-10" })}
     </button>
   );
 }

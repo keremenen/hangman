@@ -28,9 +28,7 @@ export default function GameManualBoard() {
     >
       <HeaderWrapper>
         <Link to="/" className="sm:absolute sm:left-0">
-          <IconButton
-            icon={<BackIcon className="size-4 sm:size-7 lg:size-10" />}
-          />
+          <IconButton icon={<BackIcon />} />
         </Link>
         <Heading>How to Play</Heading>
       </HeaderWrapper>

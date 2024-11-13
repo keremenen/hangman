@@ -1,14 +1,17 @@
-import HeaderWrapper from "../header-wrapper";
-import IconButton from "../icon-button";
-import BackIcon from "../../assets/images/icon-back.svg?react";
-import Heading from "../heading";
 import { Link } from "react-router-dom";
 import { useGameStore } from "../../stores/gameStore";
 import { cn, slugify } from "../../lib/utils";
 import { Categories } from "../../lib/types";
-import Container from "../container";
-import FullPageContainer from "../full-page-container";
+
+//Icons
+import BackIcon from "../../assets/images/icon-back.svg?react";
+
+//Components
+import Heading from "../heading";
+import IconButton from "../icon-button";
+import HeaderWrapper from "../header-wrapper";
 import CategoryButton from "../category-button";
+import FullPageContainer from "../full-page-container";
 
 export default function CategoryPickBoard() {
   const getAllCategories = useGameStore((state) => state.getAllCategories);
@@ -18,31 +21,32 @@ export default function CategoryPickBoard() {
   const categories = getAllCategories();
 
   return (
-    <FullPageContainer className="pt-8 sm:pt-[61px] lg:pt-20">
-      <Container className="w-full lg:max-w-[76rem]">
-        <HeaderWrapper>
-          <Link to="/" className="sm:absolute sm:left-0">
-            <IconButton icon={<BackIcon />} />
-          </Link>
-          <Heading>Pick a Category</Heading>
-        </HeaderWrapper>
+    <FullPageContainer
+      isCentered={false}
+      className="pt-8 sm:pt-16 lg:max-w-[76rem] lg:pt-20"
+    >
+      <HeaderWrapper>
+        <Link to="/" className="sm:absolute sm:left-0">
+          <IconButton icon={<BackIcon />} />
+        </Link>
+        <Heading>Pick a Category</Heading>
+      </HeaderWrapper>
 
-        <GameCategories>
-          {categories?.map((category, index) => (
-            <Link to={`/app?category=${slugify(category)}`} key={index}>
-              <CategoryButton
-                key={category}
-                value={category}
-                onClick={() =>
-                  startGameWithSelectedCategory(category as Categories)
-                }
-              >
-                {category}
-              </CategoryButton>
-            </Link>
-          ))}
-        </GameCategories>
-      </Container>
+      <GameCategories>
+        {categories?.map((category, index) => (
+          <Link to={`/app?category=${slugify(category)}`} key={index}>
+            <CategoryButton
+              key={category}
+              value={category}
+              onClick={() =>
+                startGameWithSelectedCategory(category as Categories)
+              }
+            >
+              {category}
+            </CategoryButton>
+          </Link>
+        ))}
+      </GameCategories>
     </FullPageContainer>
   );
 }
