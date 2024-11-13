@@ -25,8 +25,7 @@ export default function Keyboard({ className }: { className?: string }) {
   return (
     <section
       className={cn(
-        "grid grid-cols-9 gap-x-2 gap-y-6 sm:gap-x-4",
-        // "mb-40 mt-auto flex flex-wrap justify-center gap-x-2 gap-y-4",
+        "grid w-full grid-cols-9 gap-x-2 gap-y-6 place-self-center lg:gap-x-4",
         className,
       )}
     >
@@ -53,7 +52,7 @@ function KeyboardTile({ onClick, letter, isDisabled }: KeyboardTileProps) {
   return (
     <button
       className={cn(
-        "flex h-[56px] w-[29px] items-center justify-center rounded-[8px] bg-white text-[24px] text-dark-navy sm:h-[84px] sm:w-[64px] sm:rounded-[24px] sm:text-heading-m lg:h-[84px] lg:w-[109px]",
+        "flex h-20 w-full items-center justify-center rounded-[8px] bg-white text-3xl text-dark-navy sm:rounded-[24px] sm:text-5xl lg:aspect-square",
         {
           "opacity-20": isDisabled,
         },

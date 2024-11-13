@@ -43,7 +43,7 @@ function SingleLetterTile({ letter, isVisible }: SingleLetterTileProps) {
   return (
     <span
       className={cn(
-        "flex h-[66px] w-[40px] select-none items-center justify-center overflow-hidden rounded-[12px] bg-blue text-[40px] uppercase text-transparent opacity-10 shadow-primary-button sm:h-[112px] sm:w-[80px] sm:rounded-[32px] lg:h-[128px] lg:w-[112px] lg:text-[64px]",
+        "flex h-16 w-11 select-none items-center justify-center overflow-hidden rounded-[12px] bg-blue text-4xl uppercase text-transparent opacity-10 shadow-primary-button sm:h-24 sm:w-24 sm:rounded-[32px] sm:text-6xl",
         { "text-white opacity-100": isVisible },
       )}
     >

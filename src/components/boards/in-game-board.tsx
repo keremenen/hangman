@@ -7,11 +7,11 @@ export default function InGameBoard() {
   return (
     <FullPageContainer
       isCentered={false}
-      className="pt-8 sm:pt-16 lg:max-w-[76rem] lg:pt-20"
+      className="relative pt-8 sm:pt-16 lg:max-w-[76rem] lg:pt-20"
     >
       <AppBar />
-      <HiddenLetters className="lg:pt-30 pt-28" />
-      <Keyboard className="absolute bottom-[10%]" />
+      <HiddenLetters className="pt-28 sm:pt-20" />
+      <Keyboard className="absolute bottom-[15%]" />
     </FullPageContainer>
   );
 }
