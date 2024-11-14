@@ -18,7 +18,7 @@ export default function MainMenuBoard() {
           <Logo />
         </AbsoluteContainer>
 
-        <PlayButton onClick={() => navigate("/categories")} />
+        <PlayButton onClick={() => navigate("/categories")} className="mb-14" />
 
         <Button onClick={() => navigate("/instructions")}>how to play</Button>
       </StyledContainer>
