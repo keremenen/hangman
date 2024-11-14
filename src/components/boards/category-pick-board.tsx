@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useGameStore } from "../../stores/gameStore";
-import { cn, handleEcapeToMainPageClick, slugify } from "../../lib/utils";
+import { cn, slugify } from "../../lib/utils";
 import { Categories } from "../../lib/types";
+import { useNavigate } from "react-router-dom";
 
 //Icons
 import BackIcon from "../../assets/images/icon-back.svg?react";
@@ -15,19 +16,22 @@ import FullPageContainer from "../full-page-container";
 import { useEffect } from "react";
 
 export default function CategoryPickBoard() {
+  const navigate = useNavigate();
   const getAllCategories = useGameStore((state) => state.getAllCategories);
+  const categories = getAllCategories();
+
   const startGameWithSelectedCategory = useGameStore(
     (state) => state.startGameWithSelectedCategory,
   );
-  const categories = getAllCategories();
 
   useEffect(() => {
-    window.addEventListener("keydown", handleEcapeToMainPageClick);
+    const handleKeyDown = () => navigate("/");
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      window.removeEventListener("keydown", handleEcapeToMainPageClick);
+      window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [navigate]);
 
   return (
     <FullPageContainer
