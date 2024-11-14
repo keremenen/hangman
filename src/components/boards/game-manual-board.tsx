@@ -23,7 +23,11 @@ export default function GameManualBoard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handleKeyDown = () => navigate("/");
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        navigate("/");
+      }
+    };
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {

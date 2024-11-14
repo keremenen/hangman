@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 //Components
 import Button from "../button";
@@ -9,6 +9,8 @@ import FullPageContainer from "../full-page-container";
 import AbsoluteContainer from "../absolute-container";
 
 export default function MainMenuBoard() {
+  const navigate = useNavigate();
+
   return (
     <FullPageContainer isCentered>
       <StyledContainer>
@@ -16,13 +18,9 @@ export default function MainMenuBoard() {
           <Logo />
         </AbsoluteContainer>
 
-        <Link to="/categories" className="mb-14">
-          <PlayButton />
-        </Link>
+        <PlayButton onClick={() => navigate("/categories")} />
 
-        <Link to={"/instructions"}>
-          <Button>how to play</Button>
-        </Link>
+        <Button onClick={() => navigate("/instructions")}>how to play</Button>
       </StyledContainer>
     </FullPageContainer>
   );

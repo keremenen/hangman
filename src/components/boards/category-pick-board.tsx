@@ -25,7 +25,11 @@ export default function CategoryPickBoard() {
   );
 
   useEffect(() => {
-    const handleKeyDown = () => navigate("/");
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        navigate("/");
+      }
+    };
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
@@ -47,17 +51,18 @@ export default function CategoryPickBoard() {
 
       <GameCategories>
         {categories?.map((category, index) => (
-          <Link to={`/app?category=${slugify(category)}`} key={index}>
-            <CategoryButton
-              key={category}
-              value={category}
-              onClick={() =>
-                startGameWithSelectedCategory(category as Categories)
-              }
-            >
-              {category}
-            </CategoryButton>
-          </Link>
+          // <Link to={`/app?category=${slugify(category)}`} key={index}>
+          <CategoryButton
+            key={index}
+            value={category}
+            onClick={() => {
+              startGameWithSelectedCategory(category);
+              navigate(`/app?/category=${slugify(category)}`);
+            }}
+          >
+            {category}
+          </CategoryButton>
+          // </Link>
         ))}
       </GameCategories>
     </FullPageContainer>
