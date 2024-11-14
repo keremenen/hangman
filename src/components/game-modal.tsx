@@ -36,14 +36,16 @@ export default function GameModal({ type }: GameModalProps) {
               Play Again
             </Button>
           )}
-          <Link to="/categories">
-            <Button onClick={hangleSetNewCategoryButton}>New Category</Button>
-          </Link>
-          <Link to="/">
-            <Button variant="secondary" onClick={handleQuitGame}>
-              Quit Game
-            </Button>
-          </Link>
+          <Button
+            onClick={hangleSetNewCategoryButton}
+            as={Link}
+            to="/categories"
+          >
+            New Category
+          </Button>
+          <Button variant="secondary" onClick={handleQuitGame} as={Link} to="/">
+            Quit Game
+          </Button>
         </ModalOptions>
       </ModalContent>
     </Modal>
