@@ -88,7 +88,7 @@ export const useGameStore = create(
       getAllCategories: () => {
         const data = get().data;
         if (!data) return [];
-        return Object.keys(data) as string[];
+        return Object.keys(data) as (keyof CategoryTree)[];
       },
 
       togglePause: () => {
