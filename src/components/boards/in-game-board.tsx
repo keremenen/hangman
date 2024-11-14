@@ -1,3 +1,4 @@
+//Components
 import HiddenLetters from "../hidden-letters";
 import Keyboard from "../keyboard";
 import AppBar from "../app-bar";
