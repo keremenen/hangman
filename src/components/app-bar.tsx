@@ -4,7 +4,6 @@ import IconButton from "./icon-button";
 import HealthBar from "./health-bar";
 import { useGameStore } from "../stores/gameStore";
 import { useEffect } from "react";
-import { handleEcapeClickWithCallback } from "../lib/utils";
 
 export default function AppBar() {
   const togglePause = useGameStore((state) => state.togglePause);
@@ -12,9 +11,17 @@ export default function AppBar() {
   const health = useGameStore((state) => state.health);
 
   useEffect(() => {
-    window.addEventListener("keydown", (e) => {
-      handleEcapeClickWithCallback(e, togglePause);
-    });
+    const handleEcapeKeyClick = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        togglePause();
+      }
+    };
+
+    window.addEventListener("keydown", handleEcapeKeyClick);
+
+    return () => {
+      window.removeEventListener("keydown", handleEcapeKeyClick);
+    };
   }, [togglePause]);
 
   return (

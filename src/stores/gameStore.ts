@@ -90,6 +90,8 @@ export const useGameStore = create(
       },
 
       togglePause: () => {
+        const { isPaused } = get();
+        console.log("togglePause", isPaused);
         set((state) => ({ isPaused: !state.isPaused }));
       },
 
@@ -214,8 +216,10 @@ export const useGameStore = create(
           clickedLetters,
           isGameStarted,
           word,
+          isPaused,
         } = get();
 
+        if (isPaused) return;
         if (!isGameStarted) return;
         const loweredWord = getArrayOfLoweredLetters(word!);
 
