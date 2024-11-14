@@ -1,6 +1,11 @@
 import { cva } from "class-variance-authority";
 import { cn } from "../lib/utils";
-import { ButtonHTMLAttributes, ElementType, ReactNode } from "react";
+import {
+  ButtonHTMLAttributes,
+  ElementType,
+  ReactNode,
+  forwardRef,
+} from "react";
 
 type ButtonProps<T extends ElementType = "button"> = {
   as?: T;
@@ -11,7 +16,7 @@ type ButtonProps<T extends ElementType = "button"> = {
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const buttonVariants = cva(
-  "flex items-center px-16 text-heading-s uppercase rounded-full h-[62px] whitespace-nowrap disabled:opacity-50 disabled:pointer-events-none transition-color ease-in-out duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue focus-visible:ring-opacity-50",
+  "flex items-center px-16 text-heading-s uppercase rounded-full h-[62px] whitespace-nowrap disabled:opacity-50 disabled:pointer-events-none transition-color ease-in-out duration-200 focus-visible:outline-none hover:outline-none outline-none",
   {
     variants: {
       variant: {
@@ -27,20 +32,21 @@ const buttonVariants = cva(
   },
 );
 
-export default function Button<T extends ElementType = "button">({
-  as,
-  variant,
-  className,
-  children,
-  ...props
-}: ButtonProps<T>) {
-  const Component = as || "button";
-  return (
-    <Component
-      className={cn(buttonVariants({ variant, className }))}
-      {...props}
-    >
-      {children}
-    </Component>
-  );
-}
+const Button = forwardRef<HTMLButtonElement, ButtonProps<ElementType>>(
+  ({ as, variant, className, children, ...props }, ref) => {
+    const Component = as || "button";
+    return (
+      <Component
+        ref={ref}
+        className={cn(buttonVariants({ variant, className }))}
+        {...props}
+      >
+        {children}
+      </Component>
+    );
+  },
+);
+
+Button.displayName = "Button";
+
+export default Button;
