@@ -20,9 +20,9 @@ export default function MainMenuBoard() {
           <PlayButton />
         </Link>
 
-        <Link to={"/instructions"}>
-          <Button>how to play</Button>
-        </Link>
+        <Button as={Link} to={"/instructions"}>
+          how to play
+        </Button>
       </StyledContainer>
     </FullPageContainer>
   );

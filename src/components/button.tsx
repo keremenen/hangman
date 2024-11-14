@@ -1,22 +1,16 @@
 import { cva } from "class-variance-authority";
 import { cn } from "../lib/utils";
-import {
-  ButtonHTMLAttributes,
-  ElementType,
-  ReactNode,
-  forwardRef,
-} from "react";
+import { ButtonHTMLAttributes, forwardRef } from "react";
 
-type ButtonProps<T extends ElementType = "button"> = {
-  as?: T;
-  children: ReactNode;
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  children: string;
   className?: string;
+  onClick: () => void;
   variant?: "primary" | "secondary";
-  to?: string;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+};
 
 const buttonVariants = cva(
-  "flex items-center px-16 text-heading-s uppercase rounded-full h-[62px] whitespace-nowrap disabled:opacity-50 disabled:pointer-events-none transition-color ease-in-out duration-200 focus-visible:outline-none hover:outline-none outline-none",
+  "flex items-center px-16 text-heading-s uppercase rounded-full h-[62px] whitespace-nowrap disabled:opacity-50 disabled:pointer-events-none transition-color ease-in-out duration-200 focus-visible:outline-none outline-none",
   {
     variants: {
       variant: {
@@ -32,17 +26,17 @@ const buttonVariants = cva(
   },
 );
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps<ElementType>>(
-  ({ as, variant, className, children, ...props }, ref) => {
-    const Component = as || "button";
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ variant = "primary", className, children, onClick, ...props }, ref) => {
     return (
-      <Component
+      <button
         ref={ref}
         className={cn(buttonVariants({ variant, className }))}
+        onClick={onClick}
         {...props}
       >
         {children}
-      </Component>
+      </button>
     );
   },
 );

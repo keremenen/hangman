@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist, PersistOptions } from "zustand/middleware";
 import { HP_REDUCTION } from "../lib/const";
 import { Categories, CategoryTree } from "../lib/types";
+import { NavigateFunction } from "react-router-dom";
 
 type GameStore = {
   isGameStarted: boolean;
@@ -34,14 +35,15 @@ type GameStore = {
   getArrayOfLoweredLetters: (word: string) => string[];
   resetClickedLetters: () => void;
   setFullHealth: () => void;
-  hangleSetNewCategoryButton: () => void;
-  handleQuitGame: () => void;
+  handleRedirectToCategoryPage: (navigate: NavigateFunction) => void;
+  handleRedirectToMainMenu: (navigate: NavigateFunction) => void;
 };
 
 export const useGameStore = create(
   persist(
     (set, get) => ({
       isGameStarted: false,
+
       selectedCategory: null,
       isPaused: false,
       isLose: false,
@@ -90,8 +92,6 @@ export const useGameStore = create(
       },
 
       togglePause: () => {
-        const { isPaused } = get();
-        console.log("togglePause", isPaused);
         set((state) => ({ isPaused: !state.isPaused }));
       },
 
@@ -188,22 +188,25 @@ export const useGameStore = create(
       },
 
       // This is specific for modal component
-      hangleSetNewCategoryButton: () => {
+      handleRedirectToCategoryPage: (navigate: NavigateFunction) => {
         set({
           isGameStarted: false,
           isWon: false,
           isLose: false,
           isPaused: false,
         });
+        navigate("/categories");
       },
 
-      handleQuitGame: () => {
+      handleRedirectToMainMenu: (navigate) => {
         set({
           isGameStarted: false,
           isWon: false,
           isLose: false,
           isPaused: false,
         });
+
+        navigate("/");
       },
 
       handleKeyboardClick: (letter: string) => {
