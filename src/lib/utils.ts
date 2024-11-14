@@ -31,3 +31,19 @@ export const getCategoryNameFromUrl = (): Categories => {
 export const checkIfKeyIsLetter = (event: KeyboardEvent) => {
   return /^[a-zA-Z]$/.test(event.key);
 };
+
+export const handleEcapeToMainPageClick = (e: KeyboardEvent) => {
+  if (e.key === "Escape") {
+    window.location.href = "/";
+  }
+};
+
+export const handleEcapeClickWithCallback = (
+  e: KeyboardEvent,
+  callback: () => void,
+) => {
+  if (e.key === "Escape") {
+    console.log("should");
+    callback();
+  }
+};

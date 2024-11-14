@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useGameStore } from "../../stores/gameStore";
-import { cn, slugify } from "../../lib/utils";
+import { cn, handleEcapeToMainPageClick, slugify } from "../../lib/utils";
 import { Categories } from "../../lib/types";
 
 //Icons
@@ -12,6 +12,7 @@ import IconButton from "../icon-button";
 import HeaderWrapper from "../header-wrapper";
 import CategoryButton from "../category-button";
 import FullPageContainer from "../full-page-container";
+import { useEffect } from "react";
 
 export default function CategoryPickBoard() {
   const getAllCategories = useGameStore((state) => state.getAllCategories);
@@ -19,6 +20,14 @@ export default function CategoryPickBoard() {
     (state) => state.startGameWithSelectedCategory,
   );
   const categories = getAllCategories();
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleEcapeToMainPageClick);
+
+    return () => {
+      window.removeEventListener("keydown", handleEcapeToMainPageClick);
+    };
+  }, []);
 
   return (
     <FullPageContainer

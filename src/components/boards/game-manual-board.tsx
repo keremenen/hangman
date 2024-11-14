@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
-import { addLeadingZero, cn } from "../../lib/utils";
+import {
+  addLeadingZero,
+  cn,
+  handleEcapeToMainPageClick,
+} from "../../lib/utils";
 
 // Icons
 import BackIcon from "../../assets/images/icon-back.svg?react";
@@ -10,6 +14,7 @@ import IconButton from "../icon-button";
 import Heading from "../heading";
 import FullPageContainer from "../full-page-container";
 import useGameStore from "../../stores/gameStore";
+import { useEffect } from "react";
 
 type SingleGameManualProps = {
   instruction: { title: string; description: string };
@@ -19,7 +24,13 @@ type SingleGameManualProps = {
 export default function GameManualBoard() {
   const hangmanGameInstructions = useGameStore((state) => state.instructions);
 
-  console.log(hangmanGameInstructions);
+  useEffect(() => {
+    window.addEventListener("keydown", handleEcapeToMainPageClick);
+
+    return () => {
+      window.removeEventListener("keydown", handleEcapeToMainPageClick);
+    };
+  }, []);
 
   return (
     <FullPageContainer

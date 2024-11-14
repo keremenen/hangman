@@ -3,11 +3,19 @@ import HeaderWrapper from "./header-wrapper";
 import IconButton from "./icon-button";
 import HealthBar from "./health-bar";
 import { useGameStore } from "../stores/gameStore";
+import { useEffect } from "react";
+import { handleEcapeClickWithCallback } from "../lib/utils";
 
 export default function AppBar() {
   const togglePause = useGameStore((state) => state.togglePause);
   const selectedCategory = useGameStore((state) => state.selectedCategory);
   const health = useGameStore((state) => state.health);
+
+  useEffect(() => {
+    window.addEventListener("keydown", (e) => {
+      handleEcapeClickWithCallback(e, togglePause);
+    });
+  }, [togglePause]);
 
   return (
     <HeaderWrapper className="sm:justify-between">
