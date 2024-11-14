@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
-import {
-  addLeadingZero,
-  cn,
-  handleEcapeToMainPageClick,
-} from "../../lib/utils";
+import { addLeadingZero, cn } from "../../lib/utils";
+import { useNavigate } from "react-router-dom";
 
 // Icons
 import BackIcon from "../../assets/images/icon-back.svg?react";
@@ -23,14 +20,16 @@ type SingleGameManualProps = {
 
 export default function GameManualBoard() {
   const hangmanGameInstructions = useGameStore((state) => state.instructions);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    window.addEventListener("keydown", handleEcapeToMainPageClick);
+    const handleKeyDown = () => navigate("/");
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      window.removeEventListener("keydown", handleEcapeToMainPageClick);
+      window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [navigate]);
 
   return (
     <FullPageContainer

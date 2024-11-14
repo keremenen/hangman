@@ -5,7 +5,7 @@ import { ButtonHTMLAttributes, forwardRef } from "react";
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: string;
   className?: string;
-  onClick: () => void;
+  onClick?: () => void;
   variant?: "primary" | "secondary";
 };
 
