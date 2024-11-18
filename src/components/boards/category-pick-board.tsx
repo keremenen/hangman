@@ -43,9 +43,14 @@ export default function CategoryPickBoard() {
       className="pt-8 sm:pt-16 lg:max-w-[76rem] lg:pt-20"
     >
       <HeaderWrapper>
-        <Link to="/" className="sm:absolute sm:left-0">
-          <IconButton icon={<BackIcon />} />
-        </Link>
+        <IconButton
+          icon={<BackIcon />}
+          className="sm:absolute sm:left-0"
+          onClick={() => {
+            navigate("/");
+          }}
+        />
+
         <Heading>Pick a Category</Heading>
       </HeaderWrapper>
 
