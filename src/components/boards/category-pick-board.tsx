@@ -10,9 +10,10 @@ import BackIcon from "../../assets/images/icon-back.svg?react";
 import Heading from "../heading";
 import IconButton from "../icon-button";
 import HeaderWrapper from "../header-wrapper";
-import CategoryButton from "../category-button";
+
 import FullPageContainer from "../full-page-container";
 import { useEffect } from "react";
+import Button from "../button";
 
 export default function CategoryPickBoard() {
   const navigate = useNavigate();
@@ -51,16 +52,17 @@ export default function CategoryPickBoard() {
       <GameCategories>
         {categories?.map((category, index) => (
           // <Link to={`/app?category=${slugify(category)}`} key={index}>
-          <CategoryButton
+          <Button
             key={index}
             value={category}
+            size="large"
             onClick={() => {
               startGameWithSelectedCategory(category);
               navigate(`/app?/category=${slugify(category)}`);
             }}
           >
             {category}
-          </CategoryButton>
+          </Button>
           // </Link>
         ))}
       </GameCategories>

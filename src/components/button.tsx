@@ -7,6 +7,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string;
   onClick?: () => void;
   variant?: "primary" | "secondary";
+  size?: "default" | "large";
 };
 
 const buttonVariants = cva(
@@ -19,19 +20,27 @@ const buttonVariants = cva(
         secondary:
           "bg-pink-gradient shadow-secondary-button hover:brightness-125 focus-visible:brightness-125",
       },
+      size: {
+        default: "w-auto",
+        large: "py-6 w-full sm:py-[62px] text-[24px] rounded-[20px]",
+      },
     },
     defaultVariants: {
       variant: "primary",
+      // size: "default",
     },
   },
 );
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = "primary", className, children, onClick, ...props }, ref) => {
+  (
+    { variant = "primary", className, size, children, onClick, ...props },
+    ref,
+  ) => {
     return (
       <button
         ref={ref}
-        className={cn(buttonVariants({ variant, className }))}
+        className={cn(buttonVariants({ variant, className, size }))}
         onClick={onClick}
         {...props}
       >
