@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { cn } from "../lib/utils";
 
 type HeaderWrapperProps = {
@@ -5,18 +6,20 @@ type HeaderWrapperProps = {
   className?: string;
 };
 
-export default function HeaderWrapper({
-  children,
-  className,
-}: HeaderWrapperProps) {
-  return (
-    <header
-      className={cn(
-        "relative flex w-full items-center justify-between sm:justify-center",
-        className,
-      )}
-    >
-      {children}
-    </header>
-  );
-}
+const HeaderWrapper = forwardRef<HTMLHeadingElement, HeaderWrapperProps>(
+  ({ children, className }, ref) => {
+    return (
+      <header
+        ref={ref}
+        className={cn(
+          "relative flex w-full items-center justify-between sm:justify-center",
+          className,
+        )}
+      >
+        {children}
+      </header>
+    );
+  },
+);
+
+export default HeaderWrapper;
