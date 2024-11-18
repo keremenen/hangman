@@ -7,9 +7,23 @@ import PlayButton from "../play-button";
 import StyledContainer from "../styled-container";
 import FullPageContainer from "../full-page-container";
 import AbsoluteContainer from "../absolute-container";
+import { useEffect } from "react";
 
 export default function MainMenuBoard() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        navigate("/categories");
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [navigate]);
 
   return (
     <FullPageContainer isCentered>
