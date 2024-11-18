@@ -52,7 +52,7 @@ function KeyboardTile({ onClick, letter, isDisabled }: KeyboardTileProps) {
   return (
     <button
       className={cn(
-        "flex h-20 w-full items-center justify-center rounded-[8px] bg-white text-3xl text-dark-navy focus-visible:ring-0 sm:rounded-[24px] sm:text-5xl lg:aspect-square",
+        "flex h-20 w-full items-center justify-center rounded-[8px] bg-white text-3xl text-dark-navy transition duration-100 hover:scale-105 focus-visible:scale-105 focus-visible:ring-0 sm:rounded-[24px] sm:text-5xl lg:aspect-square",
         {
           "opacity-20": isDisabled,
         },

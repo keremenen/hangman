@@ -5,12 +5,14 @@ import { useGameStore } from "../stores/gameStore";
 import { useNavigate } from "react-router-dom";
 import ReactFocusLock from "react-focus-lock";
 import { useEffect, useRef } from "react";
+import { motion } from "motion/react";
 
 type GameModalProps = {
   type: "Pause" | "Won" | "Lost";
 };
 
 export default function GameModal({ type }: GameModalProps) {
+  const MotionModalContent = motion(ModalContent);
   const navigate = useNavigate();
   const togglePause = useGameStore((state) => state.togglePause);
   const word = useGameStore((state) => state.word);
@@ -59,7 +61,14 @@ export default function GameModal({ type }: GameModalProps) {
   return (
     <Modal>
       <ReactFocusLock returnFocus>
-        <ModalContent>
+        <MotionModalContent
+          initial={{ opacity: 0, scale: 0.2 }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+            transition: { duration: 0.3, ease: "easeOut" },
+          }}
+        >
           <ModalHeader>
             <Heading className="text-[94px] sm:text-[134px]">{type}</Heading>
           </ModalHeader>
@@ -99,7 +108,7 @@ export default function GameModal({ type }: GameModalProps) {
               Quit Game
             </Button>
           </ModalOptions>
-        </ModalContent>
+        </MotionModalContent>
       </ReactFocusLock>
     </Modal>
   );
