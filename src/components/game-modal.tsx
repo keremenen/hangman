@@ -64,7 +64,6 @@ export default function GameModal({ type }: GameModalProps) {
             <Heading className="text-[94px] sm:text-[134px]">{type}</Heading>
           </ModalHeader>
           <ModalOptions>
-            <p className="text-4xl">Password was: {word}</p>
             {type === "Pause" && (
               <Button
                 ref={(el) => (buttonRefs.current[0] = el)}
@@ -74,12 +73,17 @@ export default function GameModal({ type }: GameModalProps) {
               </Button>
             )}
             {(type === "Won" || type === "Lost") && (
-              <Button
-                ref={(el) => (buttonRefs.current[0] = el)}
-                onClick={() => startGameWithSelectedCategory(selectedCategory!)}
-              >
-                Play Again
-              </Button>
+              <>
+                <p className="text-4xl">Password was: {word}</p>
+                <Button
+                  ref={(el) => (buttonRefs.current[0] = el)}
+                  onClick={() =>
+                    startGameWithSelectedCategory(selectedCategory!)
+                  }
+                >
+                  Play Again
+                </Button>
+              </>
             )}
             <Button
               ref={(el) => (buttonRefs.current[1] = el)}
