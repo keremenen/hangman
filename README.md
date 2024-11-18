@@ -1,4 +1,4 @@
-# Frontend Mentor - Password generator app solution
+# Frontend Mentor - Hangman Game
 
 This is a solution to the [Hangman game challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/hangman-game-rsQiSVLGWn). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
