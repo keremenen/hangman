@@ -59,7 +59,7 @@ export default function CategoryPickBoard() {
   return (
     <FullPageContainer
       isCentered={false}
-      className="pt-8 sm:pt-16 lg:max-w-[76rem] lg:pt-20"
+      className="overflow-x-hidden pt-8 sm:pt-16 lg:max-w-[76rem] lg:pt-20"
     >
       <MotionHeaderWrapper
         initial={{ left: "100vh", opacity: 0 }}

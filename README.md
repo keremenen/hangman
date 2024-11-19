@@ -36,12 +36,8 @@ Users should be able to:
 
 ### Links
 
-<!-- - Solution URL: [Solution URL](https://www.frontendmentor.io/solutions/password-generator-app-yD8l_YjHT_) -->
-<!-- - Live Site URL: [Live Site URL](https://password-generator-app-kemer.netlify.app/) -->
-
-## My process
-
-### State managment
+- Solution URL: [Solution URL](https://www.frontendmentor.io/solutions/hangman-NiflcNOeyc)
+- Live Site URL: [Live Site URL](https://hangman-kemer.netlify.app/)
 
 ### Built with
 
